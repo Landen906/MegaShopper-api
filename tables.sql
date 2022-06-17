@@ -30,17 +30,23 @@ create table items (
     price               money not null
 );
 
+create table cart (
+    customer_id         uuid,
+    items               uuid[],
+
+    constraint cart_custommer_id_fk
+    foreign key(customer_id)
+    references customers(customer_id)
+);
+
 create table orders (
-    item_id             uuid,
+    order_id            int generated always as identity primary key,
+    items               uuid[],
     tracking_number     int unique not null,
     delivery_date       timestamp not null,
     customer_id         uuid,
 
-    constraint item_id_fk
-    foreign key(item_id)
-    references items(item_id),
-
-    comstraint customer_id_fk
+    constraint customer_id_fk
     foreign key(customer_id)
     references customers(customer_id)
 );
