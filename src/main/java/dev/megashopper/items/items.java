@@ -1,29 +1,29 @@
 package dev.megashopper.items;
 
 public class items {
-    private int item_id;
+    private int itemId;
     private String title;
     private String description;
     private int price;
-    private int category_id;
+    private int categoryId;
 
     public items() {
     }
 
-    public items(int item_id, String title, String description, int price, int category_id) {
-        this.item_id = item_id;
+    public items(int itemId, String title, String description, int price, int categoryId) {
+        this.itemId = itemId;
         this.title = title;
         this.description = description;
         this.price = price;
-        this.category_id = category_id;
+        this.categoryId = categoryId;
     }
 
-    public int getItem_id() {
-        return item_id;
+    public int getItemId() {
+        return itemId;
     }
 
-    public void setItem_id(int item_id) {
-        this.item_id = item_id;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
     public String getTitle() {
@@ -50,22 +50,22 @@ public class items {
         this.price = price;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     @Override
     public String toString() {
-        return "electronics{" +
-                "item_id=" + item_id +
+        return "items{" +
+                "itemId=" + itemId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", category_id=" + category_id +
+                ", categoryId=" + categoryId +
                 '}';
     }
 }
