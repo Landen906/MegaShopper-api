@@ -30,13 +30,17 @@ create table items (
     price               money not null
 );
 
-create table cart (
-    customer_id         uuid,
-    items               uuid[],
+create table cart ( -- junction table
+    item_id             uuid not null,
+    customer_id         uuid not null,
 
-    constraint cart_custommer_id_fk
-    foreign key(customer_id)
-    references customers(customer_id)
+    constraint itemcustomer_pk primary key
+    (
+        item_id,
+        customer_id
+    ),
+    foreign key (item_id) references items(item_id),
+    foreign key (customer_id) references customers(customer_id)
 );
 
 create table orders (
