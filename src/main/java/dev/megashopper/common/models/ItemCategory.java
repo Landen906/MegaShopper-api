@@ -1,13 +1,13 @@
-package dev.megashopper.items;
+package dev.megashopper.common.models;
 
-public class itemCategories {
+public class ItemCategory {
     private int categoryId;
     private String categoryName;
 
-    public itemCategories() {
+    public ItemCategory() {
     }
 
-    public itemCategories(int categoryId, String categoryName) {
+    public ItemCategory(int categoryId, String categoryName) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
@@ -30,7 +30,7 @@ public class itemCategories {
 
     @Override
     public String toString() {
-        return "itemCategories{" +
+        return "ItemCategory{" +
                 "categoryId=" + categoryId +
                 ", categoryName='" + categoryName + '\'' +
                 '}';

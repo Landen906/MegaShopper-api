@@ -1,4 +1,4 @@
-package dev.megashopper.employees;
+package dev.megashopper.common.models;
 
 public class Employee {
     private int employeeId;

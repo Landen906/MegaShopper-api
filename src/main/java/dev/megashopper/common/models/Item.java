@@ -1,16 +1,16 @@
-package dev.megashopper.items;
+package dev.megashopper.common.models;
 
-public class items {
+public class Item {
     private int itemId;
     private String title;
     private String description;
     private int price;
     private int categoryId;
 
-    public items() {
+    public Item() {
     }
 
-    public items(int itemId, String title, String description, int price, int categoryId) {
+    public Item(int itemId, String title, String description, int price, int categoryId) {
         this.itemId = itemId;
         this.title = title;
         this.description = description;
@@ -60,7 +60,7 @@ public class items {
 
     @Override
     public String toString() {
-        return "items{" +
+        return "Item{" +
                 "itemId=" + itemId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
