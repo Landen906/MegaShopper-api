@@ -1,4 +1,4 @@
 package dev.megashopper.common.models;
 
-public class tbd {
+public class Customer {
 }
