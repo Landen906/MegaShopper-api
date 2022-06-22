@@ -1,29 +1,41 @@
-package dev.megashopper.common.models;
+package dev.megashopper.common.entities;
 
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.UUID;
+
+@Entity
+@Table(name = "items")
 public class Item {
-    private int itemId;
+    @Id
+    @Column(name = "item_id", nullable = false, unique = true)
+    private String itemId;
+    @Column(name = "title", nullable = false)
     private String title;
+    @Column(nullable = false)
     private String description;
-    private int price;
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
+    @Column(name = "category_id", nullable = false)
     private int categoryId;
 
     public Item() {
     }
 
-    public Item(int itemId, String title, String description, int price, int categoryId) {
-        this.itemId = itemId;
+    public Item(String title, String description, BigDecimal price, int categoryId) {
+        this.itemId = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.price = price;
         this.categoryId = categoryId;
     }
 
-    public int getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
+    public void setItemId(UUID itemId) {
+        this.itemId = itemId.toString();
     }
 
     public String getTitle() {
@@ -42,11 +54,11 @@ public class Item {
         this.description = description;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

@@ -1,16 +1,16 @@
-package dev.megashopper.common.models;
+package dev.megashopper.common.entities;
 
 public class Employee {
     private int employeeId;
     private String firstName;
     private String lastName;
-    private int password;
+    private Password password;
     private String email;
 
     public Employee() {
     }
 
-    public Employee(int employeeId, String firstName, String lastName, int password, String email) {
+    public Employee(int employeeId, String firstName, String lastName, Password password, String email) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,11 +42,11 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public int getPassword() {
+    public Password getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(Password password) {
         this.password = password;
     }
 
