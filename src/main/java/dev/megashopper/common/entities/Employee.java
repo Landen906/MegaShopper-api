@@ -1,10 +1,27 @@
 package dev.megashopper.common.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employees")
 public class Employee {
+    @Id
+    @Column(name = "employee_id", nullable = false, unique = true)
     private int employeeId;
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    private Password password;
+
+    private Password password; // used to store the password, only thing exposed to the code
+    @Column(name = "password_hash", nullable = false, unique = true)
+    private byte[] hash;
+    @Column(name = "password_salt", nullable = false, unique = true)
+    private byte[] salt;
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     public Employee() {
@@ -14,7 +31,8 @@ public class Employee {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        this.hash = password.getHash();
+        this.salt = password.getSalt();
         this.email = email;
     }
 
@@ -56,6 +74,21 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public byte[] getHash() {
+        return hash;
+    }
+
+    public void setHash(byte[] hash) {
+        this.hash = hash;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 
     @Override
