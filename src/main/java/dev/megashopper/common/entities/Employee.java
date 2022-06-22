@@ -1,20 +1,38 @@
-package dev.megashopper.common.models;
+package dev.megashopper.common.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "employees")
 public class Employee {
+    @Id
+    @Column(name = "employee_id", nullable = false, unique = true)
     private int employeeId;
+    @Column(name = "first_name", nullable = false)
     private String firstName;
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    private int password;
+
+    private Password password; // used to store the password, only thing exposed to the code
+    @Column(name = "password_hash", nullable = false, unique = true)
+    private byte[] hash;
+    @Column(name = "password_salt", nullable = false, unique = true)
+    private byte[] salt;
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
     public Employee() {
     }
 
-    public Employee(int employeeId, String firstName, String lastName, int password, String email) {
+    public Employee(int employeeId, String firstName, String lastName, Password password, String email) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
+        this.hash = password.getHash();
+        this.salt = password.getSalt();
         this.email = email;
     }
 
@@ -42,11 +60,11 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public int getPassword() {
+    public Password getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(Password password) {
         this.password = password;
     }
 
@@ -56,6 +74,21 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public byte[] getHash() {
+        return hash;
+    }
+
+    public void setHash(byte[] hash) {
+        this.hash = hash;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
     }
 
     @Override

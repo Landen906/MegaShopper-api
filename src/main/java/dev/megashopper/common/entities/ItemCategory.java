@@ -1,7 +1,17 @@
-package dev.megashopper.common.models;
+package dev.megashopper.common.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "categories")
 public class ItemCategory {
+    @Id
+    @Column(name = "category_id", nullable = false, unique = true)
     private int categoryId;
+    @Column(name = "category_id", nullable = false, unique = true)
     private String categoryName;
 
     public ItemCategory() {
