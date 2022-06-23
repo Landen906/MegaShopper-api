@@ -25,7 +25,7 @@ public class User implements Comparable<User> {
     private String address;
     @Column(nullable = false, unique = true, columnDefinition  = "VARCHAR CHECK (LENGTH(username) >= 8)")
     private String username;
-    @Column(nullable = false, columnDefinition  = "VARCHAR CHECK (LENGTH(password) >= 8)")
+    @Column(nullable = false)
     private Password password;
 
 
