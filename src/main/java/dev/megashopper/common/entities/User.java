@@ -114,6 +114,14 @@ public class User implements Comparable<User> {
                 '}';
     }
 
+    public Object getQuestionText() {
+        return null;
+    }
+
+    public Object getAnswerText() {
+        return null;
+    }
+
 
     @Override
     public int compareTo(User o) {

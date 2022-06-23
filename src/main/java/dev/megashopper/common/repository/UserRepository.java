@@ -8,8 +8,15 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
+
+// TODO: Finish Implementing - UserRepository = UserDaoPostgres from foundation project
+
+    boolean existsByUsername(String username);
+    boolean existsByEmail(String email);
+
     User findUserByUsername(String username);
     User findUserByEmail(String email);
     User findUserByUsernameAndPassword(String username, Password password);
 
 }
+
