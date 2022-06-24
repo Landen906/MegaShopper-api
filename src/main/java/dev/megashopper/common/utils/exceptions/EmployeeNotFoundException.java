@@ -1,4 +1,4 @@
-package dev.megashopper.common.exceptions;
+package dev.megashopper.common.utils.exceptions;
 
 import com.sun.xml.internal.ws.api.model.CheckedException;
 
