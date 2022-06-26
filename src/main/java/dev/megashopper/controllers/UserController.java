@@ -1,15 +1,18 @@
 package dev.megashopper.controllers;
-
+import dev.megashopper.common.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import dev.megashopper.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 // Rest controller combines @Controller and @ResponseBody(changes return value to HTTP response)
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/User")
+
 public class UserController<ResourceCreationResponse, NewUserRequest> {
 
     private final UserService userService;

@@ -1,5 +1,6 @@
 package dev.megashopper.common.service;
-
+import dev.megashopper.common.dtos.UserResponse;
+import dev.megashopper.common.entities.User;
 import dev.megashopper.common.entities.User;
 import dev.megashopper.common.repository.UserRepository;
 import dev.megashopper.common.utils.exceptions.InvalidRequestException;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -15,10 +18,19 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Autowired
+    public UserService(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
+}
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public UserService(UserRepository userRepository) {
 
         this.userRepository = userRepository;
     }
+
 
 /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
   */
@@ -36,5 +48,10 @@ public class UserService {
 //
 //        return new UserResponse(userRepository.createUser(newUser).getcustomerId());
 //    }
+
+
+    public List<UserResponse> fetchAllUsers() {
+        return userRepository.fetchAllUsers().stream().map(UserResponse::new).collect(Collectors.toList());
+    }
 
     }
