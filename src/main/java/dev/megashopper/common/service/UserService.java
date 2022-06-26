@@ -1,12 +1,9 @@
 package dev.megashopper.common.service;
-
-<<<<<<< Updated upstream
-
-=======
 import dev.megashopper.common.dtos.UserResponse;
 import dev.megashopper.common.entities.User;
->>>>>>> Stashed changes
+import dev.megashopper.common.entities.User;
 import dev.megashopper.common.repository.UserRepository;
+import dev.megashopper.common.utils.exceptions.InvalidRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,18 +15,22 @@ import java.util.stream.Collectors;
 @Transactional
 public class UserService {
 
-    private final UserRepository userRepo;
+    private final UserRepository userRepository;
 
     @Autowired
-<<<<<<< Updated upstream
     public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
 }
-=======
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+    public UserService(UserRepository userRepository) {
+
+        this.userRepository = userRepository;
+    }
+
 
 /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
   */
@@ -49,10 +50,8 @@ public class UserService {
 //    }
 
 
-
     public List<UserResponse> fetchAllUsers() {
         return userRepository.fetchAllUsers().stream().map(UserResponse::new).collect(Collectors.toList());
     }
 
     }
->>>>>>> Stashed changes
