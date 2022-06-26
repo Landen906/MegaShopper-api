@@ -1,4 +1,6 @@
 package dev.megashopper.controllers;
+import dev.megashopper.common.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -6,10 +8,6 @@ import java.util.List;
 
 // Rest controller combines @Controller and @ResponseBody(changes return value to HTTP response)
 @RestController
-<<<<<<< Updated upstream
-@RequestMapping("/user")
-public class UserController {
-=======
 @RequestMapping("/User")
 public class UserController<ResourceCreationResponse, NewUserRequest> {
 
@@ -39,6 +37,5 @@ public class UserController<ResourceCreationResponse, NewUserRequest> {
 //    public ResourceCreationResponse postNewUser (@RequestBody NewUserRequest newUser) {
 //        return userService.createUser(newUser);
 //    }
->>>>>>> Stashed changes
 
 }
