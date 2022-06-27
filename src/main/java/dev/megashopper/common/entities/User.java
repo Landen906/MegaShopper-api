@@ -1,5 +1,8 @@
 package dev.megashopper.common.entities;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -39,8 +42,8 @@ public class User implements Comparable<User> {
         this.email = email;
         this.address = address;
         this.username = username;
-        this.hash=password.getHash();
-        this.salt=password.getSalt();
+        this.hash = password.getHash();
+        this.salt = password.getSalt();
     }
 
     public String getCustomerId() {
@@ -96,7 +99,7 @@ public class User implements Comparable<User> {
         return Password;
     }
 
-    public void setPassword(String Password) {
+    public void setPassword(Password password) {
         this.hash=password.getHash();
         this.salt=password.getSalt();
     }
