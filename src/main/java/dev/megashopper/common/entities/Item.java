@@ -10,6 +10,7 @@ import java.util.UUID;
 @Table(name = "items")
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
 public class Item {
     @Id

@@ -24,8 +24,10 @@ public class Employee {
 
     private Password password; // used to store the password, only thing exposed to the code
     @Column(name = "password_hash", nullable = false, unique = true)
+    @Setter(AccessLevel.NONE)
     private byte[] hash;
     @Column(name = "password_salt", nullable = false, unique = true)
+    @Setter(AccessLevel.NONE)
     private byte[] salt;
     @Column(name = "email", nullable = false, unique = true)
     private String email;

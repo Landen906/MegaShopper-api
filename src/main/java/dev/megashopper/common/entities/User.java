@@ -1,7 +1,9 @@
 package dev.megashopper.common.entities;
 
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,9 +35,9 @@ public class User implements Comparable<User> {
     private String username;
     @Column(nullable = false)
     private Password password;
-
-
+    @Setter(AccessLevel.NONE)
     private byte[] hash;
+    @Setter(AccessLevel.NONE)
     private byte[] salt;
 
     public User(String firstName, String lastName, String email, String address, String username, Password password) {
