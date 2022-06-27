@@ -13,6 +13,9 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "customers")
+
+@Data
+@NoArgsConstructor
 public class User implements Comparable<User> {
 
     @Id
@@ -46,87 +49,14 @@ public class User implements Comparable<User> {
         this.salt = password.getSalt();
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-
+    public void setCustomerId() {
         this.customerId = UUID.randomUUID().toString();
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword(String Password) {
-        return Password;
     }
 
     public void setPassword(Password password) {
         this.hash=password.getHash();
         this.salt=password.getSalt();
     }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "customerId=" + customerId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
-    public Object getQuestionText() {
-        return null;
-    }
-
-    public Object getAnswerText() {
-        return null;
-    }
-
-
-    @Override
     public int compareTo(User o) {
         if (this == o) return 0;
         if (getCustomerId() != null) {
@@ -135,22 +65,5 @@ public class User implements Comparable<User> {
             return -1;
         }
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(customerId, user.customerId) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(address, user.address) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Arrays.equals(hash, user.hash) && Arrays.equals(salt, user.salt);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = Objects.hash(customerId, firstName, lastName, email, address, username, password);
-        result = 31 * result + Arrays.hashCode(hash);
-        result = 31 * result + Arrays.hashCode(salt);
-        return result;
-    }
-
 }
 
