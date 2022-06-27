@@ -23,4 +23,16 @@ public class Item {
     private BigDecimal price;
     @Column(name = "category_id", nullable = false)
     private int categoryId;
+
+    public Item(String title, String description, BigDecimal price, int categoryId) {
+        this.itemId = UUID.randomUUID().toString();
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.categoryId = categoryId;
+    }
+
+    public void setItemId() {
+        this.itemId = UUID.randomUUID().toString();
+    }
 }
