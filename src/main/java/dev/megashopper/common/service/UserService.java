@@ -1,4 +1,5 @@
 package dev.megashopper.common.service;
+
 import dev.megashopper.common.dtos.UserResponse;
 import dev.megashopper.common.entities.User;
 import dev.megashopper.common.entities.User;
@@ -19,21 +20,13 @@ public class UserService {
 
     @Autowired
     public UserService(UserRepository userRepo) {
-        this.userRepo = userRepo;
-    }
-}
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public UserService(UserRepository userRepository) {
-
-        this.userRepository = userRepository;
+        this.userRepository = userRepo;
     }
 
 
-/* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
-  */
+
+    /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
+     */
     // Method
 //    public UserResponse createNewUser(User newUser) {
 //
@@ -54,4 +47,4 @@ public class UserService {
         return userRepository.fetchAllUsers().stream().map(UserResponse::new).collect(Collectors.toList());
     }
 
-    }
+}

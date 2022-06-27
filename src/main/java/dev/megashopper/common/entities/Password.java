@@ -1,25 +1,13 @@
 package dev.megashopper.common.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Password {
     private byte[] hash;
     private byte[] salt;
-
-    public Password(byte[] hash, byte[] salt) {
-    }
-
-    public byte[] getHash() {
-        return hash;
-    }
-
-    public void setHash(byte[] hash) {
-        this.hash = hash;
-    }
-
-    public byte[] getSalt() {
-        return salt;
-    }
-
-    public void setSalt(byte[] salt) {
-        this.salt = salt;
-    }
 }

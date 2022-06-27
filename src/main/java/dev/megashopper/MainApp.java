@@ -1,5 +1,6 @@
 package dev.megashopper;
 
+import dev.megashopper.common.entities.Item;
 import org.springframework.boot.SpringApplication;
 
 public class MainApp {
