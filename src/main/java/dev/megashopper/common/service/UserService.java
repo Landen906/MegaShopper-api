@@ -10,11 +10,13 @@ import dev.megashopper.common.utils.exceptions.ResourceNotFoundException;
 import dev.megashopper.common.utils.exceptions.ResourcePersistenceException;
 import dev.megashopper.common.utils.web.validators.groups.OnCreate;
 import dev.megashopper.common.utils.web.validators.groups.OnUpdate;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.naming.AuthenticationException;
+import javax.swing.text.html.parser.Entity;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -31,10 +33,11 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
-
+    private final EntitySearcher entitySearcher;
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, EntitySearcher entitySearcher) {
         this.userRepository = userRepository;
+        this.entitySearcher = entitySearcher;
     }
 
     public List<UserResponse> fetchAllUsers() {
@@ -44,8 +47,8 @@ public class UserService {
                 .collect(Collectors.toList());
     }
     public List<UserResponsePayload> search(Map<String, String> requestParamMap) {
-        if (requestParamMap.isEmpty()) return fetchAllUsers();
-        Set<User> matchingUsers = EntitySearcher.searchForEntity(requestParamMap, User.class);
+        if (requestParamMap.isEmpty()) fetchAllUsers();
+        Set<User> matchingUsers = entitySearcher.searchForEntity(requestParamMap, User.class);
         if (matchingUsers.isEmpty()) throw new ResourceNotFoundException();
         return matchingUsers.stream()
                 .map(UserResponsePayload::new)
@@ -79,7 +82,7 @@ public class UserService {
             throw new ResourcePersistenceException("There is already a user with that email!");
         }
 
-        newUser.setCustomerId(Integer.parseInt(UUID.randomUUID().toString()));
+        newUser.setCustomerId();
         userRepository.save(newUser);
 
         return new ResourceCreationResponse(newUser.getCustomerId());
@@ -114,16 +117,17 @@ public class UserService {
             userForUpdate.setUsername(updatedUser.getUsername());
         }
 
-        if (updatedUser.getPassword("") != null) {
-            userForUpdate.setPassword(updatedUser.getPassword(""));
+        if (updatedUser.getPassword() != null) {
+            userForUpdate.setPassword(updatedUser.getPassword());
         }
 
     }
 
+    @SneakyThrows
     public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
-        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword()
+        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword())
                 .map(UserResponsePayload::new)
-                .orElseThrow(AuthenticationException::new));
+                .orElseThrow(AuthenticationException::new);
     }
 
 }
