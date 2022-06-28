@@ -13,8 +13,5 @@ public class AuthRequest {
             message = ValidatorMessageUtil.USERNAME_REQUIREMENTS,
             min = 3)
     private String username;
-
-    public String getPassword() {
-        return this.getPassword();
-    }
+    private Password password;
 }
