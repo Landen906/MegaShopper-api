@@ -1,6 +1,5 @@
 package dev.megashopper.common.utils.exceptions;
 
-import com.sun.xml.internal.ws.api.model.CheckedException;
 
 public class EmployeeNotFoundException extends Exception {
     public EmployeeNotFoundException() {

@@ -5,7 +5,6 @@ import dev.megashopper.common.dtos.*;
 import dev.megashopper.common.dtos.UserResponse;
 import dev.megashopper.common.entities.User;
 import dev.megashopper.common.repository.UserRepository;
-import dev.megashopper.common.utils.exceptions.InvalidRequestException;
 import dev.megashopper.common.utils.exceptions.ResourceNotFoundException;
 import dev.megashopper.common.utils.exceptions.ResourcePersistenceException;
 import dev.megashopper.common.utils.web.validators.groups.OnCreate;
@@ -16,15 +15,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.naming.AuthenticationException;
-import javax.swing.text.html.parser.Entity;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service

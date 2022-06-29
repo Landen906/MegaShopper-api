@@ -12,14 +12,11 @@ package dev.megashopper.common.utils.web.validators;
         public static final String PASSWORD_REQUIRED_ON_CREATE = "A password value is expected in the request payload for user creation";
         public static final String PROVIDE_NO_ROLE_ON_CREATE = "No role is expected in the request payload for user creation";
 
-        /**
-         * OnUpdate User Validation Error Messages
-         */
+        // OnUpdate User Validation Error Messages
+
         public static final String ID_REQUIRED_ON_UPDATE = "An id is required in the request payload for user update";
 
-        /**
-         * General User Validation Error Messages
-         */
+        // General User Validation Error Messages
         public static final String FNAME_REQUIREMENTS = "At least one character must be provided for a first name";
         public static final String LNAME_REQUIREMENTS = "At least one character must be provided for a last name";
         public static final String EMAIL_REQUIREMENTS = "A valid email must be provided";
