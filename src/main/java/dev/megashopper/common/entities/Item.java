@@ -1,5 +1,6 @@
 package dev.megashopper.common.entities;
 
+import dev.megashopper.common.datasource.ResourceMetadata;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,7 +12,6 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class Item {
     @Id
     @Column(name = "item_id", nullable = false, unique = true)
@@ -24,6 +24,7 @@ public class Item {
     private BigDecimal price;
     @Column(name = "category_id", nullable = false)
     private int categoryId;
+    private ResourceMetadata metadata;
 
     public Item(String title, String description, BigDecimal price, int categoryId) {
         this.itemId = UUID.randomUUID().toString();
@@ -33,7 +34,16 @@ public class Item {
         this.categoryId = categoryId;
     }
 
+    public Item() {
+        super();
+        this.itemId = UUID.randomUUID().toString();
+        this.metadata = new ResourceMetadata();
+    }
+
     public void setItemId() {
         this.itemId = UUID.randomUUID().toString();
     }
+
+
+
 }
