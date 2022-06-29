@@ -1,6 +1,5 @@
 package dev.megashopper.common.utils.exceptions;
 
-import dev.megashopper.common.entities.Item;
 
 public class ItemNotFoundException extends Exception {
 

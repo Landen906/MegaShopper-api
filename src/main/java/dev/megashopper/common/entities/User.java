@@ -9,8 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -49,6 +47,9 @@ public class User implements Comparable<User> {
         this.username = username;
         this.hash = password.getHash();
         this.salt = password.getSalt();
+    }
+
+    public User(String firstName, String lastName, String email, String username, String password) {
     }
 
     public void setCustomerId() {

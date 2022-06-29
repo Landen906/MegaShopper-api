@@ -4,7 +4,6 @@ import dev.megashopper.common.entities.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
 
 @Data
 @NoArgsConstructor
