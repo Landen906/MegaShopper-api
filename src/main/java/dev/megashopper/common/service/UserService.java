@@ -1,5 +1,6 @@
 package dev.megashopper.common.service;
 
+import com.shippo.exception.InvalidRequestException;
 import dev.megashopper.common.datasource.EntitySearcher;
 import dev.megashopper.common.dtos.*;
 import dev.megashopper.common.dtos.UserResponse;
@@ -78,19 +79,19 @@ public class UserService {
     /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
      */
     // Method
-    public UserResponse createNewUser(User newUser) {
-
-        if (newUser == null ||
-
-                newUser.getQuestionText() == null || newUser.getQuestionText().equals("") ||
-                newUser.getAnswerText() == null || newUser.getAnswerText().equals(""))
-        {
-            String msg = "Provided user data was invalid. Question and answer text must not be null or empty!";
-            throw new InvalidRequestException(msg);
-        }
-
-        return new UserResponse(UserRepository.createUser(newUser).getcustomerId());
-    }
+//    public UserResponse createUser(User newUser.){
+//
+//        if (newUser == null ||
+//
+//                newUser.getUsername() == null || newUser.getUsername().equals("") ||
+//                newUser.getPassword() == null || newUser.getPassword().equals(""))
+//        {
+//            String msg = "Provided user data was invalid. Question and answer text must not be null or empty!";
+//            throw new InvalidRequestException(msg);
+//        }
+//
+//        return new UserResponse.(newUser).getCustomerId();
+//    }
 
         if (userRepository.existsByEmail(newUser.getEmail())) {
             throw new ResourcePersistenceException("There is already a user with that email!");
