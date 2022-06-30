@@ -28,19 +28,19 @@ public class UserService {
     /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
      */
     // Method
-//    public UserResponse createNewUser(User newUser) {
-//
-//        if (newUser == null ||
-//
-//                newUser.getQuestionText() == null || newUser.getQuestionText().equals("") ||
-//                newUser.getAnswerText() == null || newUser.getAnswerText().equals(""))
-//        {
-//            String msg = "Provided user data was invalid. Question and answer text must not be null or empty!";
-//            throw new InvalidRequestException(msg);
-//        }
-//
-//        return new UserResponse(userRepository.createUser(newUser).getcustomerId());
-//    }
+    public UserResponse createNewUser(User newUser) {
+
+        if (newUser == null ||
+
+                newUser.getQuestionText() == null || newUser.getQuestionText().equals("") ||
+                newUser.getAnswerText() == null || newUser.getAnswerText().equals(""))
+        {
+            String msg = "Provided user data was invalid. Question and answer text must not be null or empty!";
+            throw new InvalidRequestException(msg);
+        }
+
+        return new UserResponse(UserRepository.createUser(newUser).getcustomerId());
+    }
 
 
     public List<UserResponse> fetchAllUsers() {
