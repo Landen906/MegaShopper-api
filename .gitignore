@@ -23,4 +23,8 @@
 hs_err_pid*
 .idea/
 target/
+resources
 application.properties
+application-deploy.yml
+application-local.yml
+application.yml
