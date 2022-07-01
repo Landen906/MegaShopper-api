@@ -4,8 +4,8 @@ import dev.megashopper.common.entities.Employee;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
+
+
 public class EmployeeResponse {
 
         private int id;

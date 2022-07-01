@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Data
-@NoArgsConstructor
+
+
 public class UserResponsePayload {
 
     private String customerId;
@@ -23,5 +23,29 @@ public class UserResponsePayload {
         this.email = user.getEmail();
         this.address = user.getAddress();
         this.username = user.getUsername();
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

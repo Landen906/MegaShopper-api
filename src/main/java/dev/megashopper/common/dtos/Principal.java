@@ -6,10 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-@Data
-@RequiredArgsConstructor
-@AllArgsConstructor
-//@NoArgsConstructor
+
+
+//
 public class Principal {
 
     private String authCustomerId;
@@ -20,5 +19,26 @@ public class Principal {
 
     public Principal(String authCustomerId) {
         this.authCustomerId = authCustomerId;
+    }
+
+    public Principal(String authCustomerId, String email) {
+        this.authCustomerId = authCustomerId;
+        this.email = email;
+    }
+
+    public String getAuthCustomerId() {
+        return authCustomerId;
+    }
+
+    public void setAuthCustomerId(String authCustomerId) {
+        this.authCustomerId = authCustomerId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

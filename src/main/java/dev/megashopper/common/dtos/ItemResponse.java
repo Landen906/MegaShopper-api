@@ -4,8 +4,8 @@ import dev.megashopper.common.entities.Item;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
+
+
 public class ItemResponse {
 
     private String itemId;
