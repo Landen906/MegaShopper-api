@@ -55,7 +55,6 @@ public class EmployeeService {
                 .map(EmployeeResponsePayload::new)
                 .collect(Collectors.toList());
     }
-}
 
     public boolean isEmailAvailability(@Valid EmailRequest request) {
         return !employeeRepository.existsByEmail(request.getEmail());
