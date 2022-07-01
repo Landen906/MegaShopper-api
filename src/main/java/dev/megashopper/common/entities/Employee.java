@@ -3,10 +3,7 @@ package dev.megashopper.common.entities;
 import dev.megashopper.common.datasource.ResourceMetadata;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -75,13 +72,6 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Employee() {
-        super();
-        this.employeeId = Integer.parseInt(UUID.randomUUID().toString());
-        this.metadata = new ResourceMetadata();
-
     }
 
 }
