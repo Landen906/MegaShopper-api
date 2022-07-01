@@ -5,8 +5,8 @@ import dev.megashopper.common.entities.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
+
+
 public class UserResponse extends dev.megashopper.common.service.UserResponse {
 
     private String customerId;
