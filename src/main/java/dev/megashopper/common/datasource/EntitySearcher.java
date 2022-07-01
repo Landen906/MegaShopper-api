@@ -4,7 +4,6 @@ import dev.megashopper.common.utils.exceptions.InvalidRequestException;
 import dev.megashopper.common.utils.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.*;
@@ -13,11 +12,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
 @Repository
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class EntitySearcher {
 
-    private final EntityManager entityManager;
+
+        private final EntityManager entityManager;
 
     @Autowired
     public EntitySearcher(EntityManager entityManager) {

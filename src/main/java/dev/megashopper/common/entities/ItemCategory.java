@@ -18,6 +18,6 @@ public class ItemCategory {
     @Id
     @Column(name = "category_id", nullable = false, unique = true)
     private int categoryId;
-    @Column(name = "category_id", nullable = false, unique = true)
+    @Column(name = "category_name", nullable = false, unique = true)
     private String categoryName;
 }

@@ -14,9 +14,24 @@ import java.util.List;
 import java.util.Map;
 
 // Rest controller combines @Controller and @ResponseBody(changes return value to HTTP response)
-@RestController
-@RequestMapping("/users")
-public class UserController {
+//@RestController
+//@RequestMapping("/users")
+//public class UserController {
+//
+//    private final UserService userService;
+//
+//    @Autowired
+//    public UserController(UserService userService) {
+//        this.userService = userService;
+//    }
+//
+//
+/* TODO: This code will not work until it has been implemented into UserRepository
+*   */
+//    @GetMapping(produces = "application/json")
+//    public <UserResponse> List<UserResponse> getAllUsers() {
+//        return (List<UserResponse>) userService.fetchAllUsers();
+//    }
 
     private final UserService userService;
 
