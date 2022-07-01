@@ -1,10 +1,10 @@
 server:
   port: 5000
   servlet:
-    context-path: /megashopper
+    context-path: /MegaShopper
 
 spring:
   application:
     name: megashopper-api
   profiles:
-    default: local
+    default: deploy

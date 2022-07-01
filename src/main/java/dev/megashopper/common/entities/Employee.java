@@ -2,17 +2,10 @@ package dev.megashopper.common.entities;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "employees")
-
-@Data
-@NoArgsConstructor
-
 public class Employee {
     @Id
     @Column(name = "employee_id", nullable = false, unique = true)
@@ -22,22 +15,59 @@ public class Employee {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Embedded
     private Password password; // used to store the password, only thing exposed to the code
-    @Column(name = "password_hash", nullable = false, unique = true)
-    @Setter(AccessLevel.NONE)
-    private byte[] hash;
-    @Column(name = "password_salt", nullable = false, unique = true)
-    @Setter(AccessLevel.NONE)
-    private byte[] salt;
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    public Employee() {
+    }
 
     public Employee(int employeeId, String firstName, String lastName, Password password, String email) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.hash = password.getHash();
-        this.salt = password.getSalt();
+        this.email = email;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Password getPassword() {
+        return password;
+    }
+
+    public void setPassword(Password password) {
+        this.password = password;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 }
