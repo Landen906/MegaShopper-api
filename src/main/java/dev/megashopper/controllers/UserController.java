@@ -33,54 +33,50 @@ import java.util.Map;
 //        return (List<UserResponse>) userService.fetchAllUsers();
 //    }
 
-//    @GetMapping("/id/{customerId}")
-//    public <UserResponse> UserResponse getUserById(@PathVariable String customerId) {
-//        return (UserResponse) userService.(customerId);
-//    }
-//
-//    /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
-//     */
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping(consumes = "application/json", produces = "application/json")
-//    public ResourceCreationResponse postNewUser (@RequestBody NewUserRequest newUser) {
-//        return userService.createUser(newUser);
-//
-//    // TODO: Need Help, I don't think it should return 'null'
-//    @GetMapping(produces = "application/json")
-//    public List<UserResponsePayload> getAllUsers(@RequestHeader(value = "Authorization", required = false) String token) {
-//        return null;
-//    }
-//
-//    @GetMapping("/search")
-//    public List<UserResponsePayload> findBy(@RequestParam Map<String, String> params) {
-//        return userService.search(params);
-//    }
-//    @GetMapping("/availability")
-//    public ResponseEntity<Void> checkAvailability(@RequestParam(required = false) String username, @RequestParam(required = false) String email) {
-//        if (username != null) {
-//            return userService.isUsernameAvailability(new UsernameRequest(username))
-//                    ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.CONFLICT);
-//        }
-//
-//        if (email != null ) {
-//            return userService.isEmailAvailability(new EmailRequest(email))
-//                    ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.CONFLICT);
-//        }
-//
-//        throw new InvalidRequestException("No email or username provided");
-//    }
-//
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping(consumes = "application/json", produces = "application/json")
-//    public ResourceCreationResponse postNewUser(@RequestBody UserRequestPayload newUserInfo) {
-//        return userService.createUser(newUserInfo);
-//    }
-//
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    @PatchMapping(consumes = "application/json")
-//    public void updateUserInfo(@RequestBody UserRequestPayload updatedUserInfo) {
-//        userService.updateUser(updatedUserInfo);
-//
-//    }
-//
-//}
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    // TODO: Need Help, I don't think it should return 'null'
+    @GetMapping(produces = "application/json")
+    public List<UserResponsePayload> getAllUsers(@RequestHeader(value = "Authorization", required = false) String token) {
+        return null;
+    }
+
+    @GetMapping("/search")
+    public List<UserResponsePayload> findBy(@RequestParam Map<String, String> params) {
+        return userService.search(params);
+    }
+    @GetMapping("/availability")
+    public ResponseEntity<Void> checkAvailability(@RequestParam(required = false) String username, @RequestParam(required = false) String email) {
+        if (username != null) {
+            return userService.isUsernameAvailability(new UsernameRequest(username))
+                    ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        if (email != null ) {
+            return userService.isEmailAvailability(new EmailRequest(email))
+                    ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
+        throw new InvalidRequestException("No email or username provided");
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public ResourceCreationResponse postNewUser(@RequestBody UserRequestPayload newUserInfo) {
+        return userService.createUser(newUserInfo);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping(consumes = "application/json")
+    public void updateUserInfo(@RequestBody UserRequestPayload updatedUserInfo) {
+        userService.updateUser(updatedUserInfo);
+    }
+
+
+
+}
