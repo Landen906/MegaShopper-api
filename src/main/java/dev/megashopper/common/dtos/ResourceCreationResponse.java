@@ -10,4 +10,7 @@ import lombok.NoArgsConstructor;
 public class ResourceCreationResponse {
 
     private String resourceId;
+
+    public ResourceCreationResponse(int employeeId) {
+    }
 }

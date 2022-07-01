@@ -1,11 +1,13 @@
 package dev.megashopper.common.entities;
 
+import dev.megashopper.common.datasource.ResourceMetadata;
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 @Entity
 @Table(name = "employees")
@@ -31,6 +33,7 @@ public class Employee {
     private byte[] salt;
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+    private ResourceMetadata metadata;
 
     public Employee(int employeeId, String firstName, String lastName, Password password, String email) {
         this.employeeId = employeeId;
@@ -40,4 +43,12 @@ public class Employee {
         this.salt = password.getSalt();
         this.email = email;
     }
+
+    public Employee() {
+        super();
+        this.employeeId = Integer.parseInt(UUID.randomUUID().toString());
+        this.metadata = new ResourceMetadata();
+
+    }
+
 }
