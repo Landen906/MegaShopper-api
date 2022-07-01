@@ -23,14 +23,6 @@
 hs_err_pid*
 .idea/
 target/
-<<<<<<< Updated upstream
-resources
 application.properties
 application-deploy.yml
-application-local.yml
-application.yml
-=======
-application.properties
-application-deploy.yml
-applicaiton.yml
->>>>>>> Stashed changes
+
