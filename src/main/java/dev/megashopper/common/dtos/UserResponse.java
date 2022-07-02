@@ -34,8 +34,8 @@ public class UserResponse extends dev.megashopper.common.service.UserResponse {
         this.username = newUser.getUsername();
         this.password = newUser.getPassword();
     }
-
-    public UserResponse getCustomerId() {
-        return null;
-    }
+//
+//    public UserResponse getCustomerId() {
+//        return null;
+//    }
 }
