@@ -144,6 +144,11 @@ public class UserService {
                 .map(UserResponsePayload::new)
                 .orElseThrow(AuthenticationException::new);
     }
+    public UserResponsePayload findUserById(String id) {
+        return userRepository.findUserById(id)
+                .map(UserResponsePayload::new)
+                .orElseThrow(ResourceNotFoundException::new);
+    }
 
 }
 
