@@ -74,24 +74,6 @@ public class UserService {
         if (userRepository.existsByUsername(newUser.getUsername())) {
             throw new ResourcePersistenceException("There is already a user with that username!");
         }
-      
-     
-    /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
-     */
-    // Method
-//    public UserResponse createUser(User newUser.){
-//
-//        if (newUser == null ||
-//
-//                newUser.getUsername() == null || newUser.getUsername().equals("") ||
-//                newUser.getPassword() == null || newUser.getPassword().equals(""))
-//        {
-//            String msg = "Provided user data was invalid. Question and answer text must not be null or empty!";
-//            throw new InvalidRequestException(msg);
-//        }
-//
-//        return new UserResponse.(newUser).getCustomerId();
-//    }
 
         if (userRepository.existsByEmail(newUser.getEmail())) {
             throw new ResourcePersistenceException("There is already a user with that email!");
@@ -151,55 +133,5 @@ public class UserService {
     }
 
 }
-
-//    public UserResponse fetchUserBycustomerId(String customerId) {
-//        return userRepository.findById(customerId)
-//                .map(UserResponse::new)
-//                .orElseThrow(InvalidRequestException::new);
-//    }
-//
-//    public UserResponse fetchUserByUsername(@Min(3) String username) {
-//        return userRepository.findUserByUsername(username)
-//                .map(UserResponse::new)
-//                .orElseThrow(InvalidRequestException::new);
-//    }
-//
-//
-//    public UserResponse fetchUserByEmail(@Email String email) {
-//        return UserRepository.findUserByEmail(email)
-//                .map(UserResponse::new)
-//                .orElseThrow(InvalidRequestException::new);
-//    }
-//
-//    public UserResponse createUser(@Valid NewUserRequest newUserRequest) {
-//
-//        User newUser = newUserRequest.extractResource();
-//
-//        if (userRepository.existsByUsername(newUser.getUsername())) {
-//            throw new InvalidRequestException("There is already a user with that username!");
-//        }
-//
-//        if (userRepository.existsByEmail(newUser.getEmail())) {
-//            throw new InvalidRequestException("There is already a user with that email!");
-//        }
-//
-//        new.setcustomerId(UUID.randomUUID().toString());
-//        userRepository.save(newUser);
-//
-//        return new InvalidRequestException(.getcustomerId());
-//    }
-//
-//    public void updateUser(@Valid UpdateUserRequest updateUserRequest) {
-//        // TODO: 6/26/22 implement update
-//    }
-//
-//    public UserResponse authenticateUserCredentials(@Valid AuthRequest authRequest) {
-//        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword()
-//                .map(UserResponse::new)
-//                .orElseThrow(AuthenticationException::new));
-//    }
-//
-//
-//}
 
 

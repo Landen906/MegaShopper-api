@@ -9,6 +9,7 @@ import java.io.Serializable;
     uniqueConstraints = {@UniqueConstraint(columnNames = {"item_id", "customer_id"})})
 public class Cart implements Serializable {
     @Id
+    @ManyToOne
     @Column(name = "item_id", nullable = false)
     private int itemId;
 

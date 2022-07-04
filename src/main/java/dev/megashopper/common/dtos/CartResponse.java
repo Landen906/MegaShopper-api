@@ -7,15 +7,17 @@ import dev.megashopper.common.service.UserService;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 public class CartResponse {
 
-    private String itemId;
+    private List<Item> items;
     private String customerId;
     private UserService userService;
 
-    public CartResponse(Item item, User user, UserService userService) {
+    public CartResponse(List<> item, User user, UserService userService) {
         this.itemId = item.getItemId();
         this.customerId = user.getCustomerId();
         this.userService = userService;
