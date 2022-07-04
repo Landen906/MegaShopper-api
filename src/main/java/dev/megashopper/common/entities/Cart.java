@@ -14,7 +14,7 @@ public class Cart implements Serializable {
 
     @Id
     @Column(name = "customer_id", nullable = false)
-    private int customerId;
+    private String customerId;
 
     public int getItemId() {
         return itemId;
@@ -24,11 +24,11 @@ public class Cart implements Serializable {
         this.itemId = itemId;
     }
 
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 }

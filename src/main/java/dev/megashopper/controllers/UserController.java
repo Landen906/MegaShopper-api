@@ -16,7 +16,7 @@ import java.util.Map;
 // Rest controller combines @Controller and @ResponseBody(changes return value to HTTP response)
 //@RestController
 //@RequestMapping("/users")
-//public class UserController {
+public class UserController {
 //
 //    private final UserService userService;
 //
@@ -41,10 +41,10 @@ import java.util.Map;
     }
 
     // TODO: Need Help, I don't think it should return 'null'
-    @GetMapping(produces = "application/json")
-    public List<UserResponsePayload> getAllUsers(@RequestHeader(value = "Authorization", required = false) String token) {
-        return null;
-    }
+//    @GetMapping(produces = "application/json")
+//    public List<UserResponsePayload> getAllUsers(@RequestHeader(value = "Authorization", required = false) String token) {
+//        return userService.fetchAllUsers();
+//    }
 
     @GetMapping("/search")
     public List<UserResponsePayload> findBy(@RequestParam Map<String, String> params) {
