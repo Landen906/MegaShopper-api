@@ -35,17 +35,15 @@ public class CartController {
 
     @PostMapping("/cart/add/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void addItem(@PathVariable String id, @RequestHeader String token) {
-        ItemResponsePayload i = itemService.findById(id);
-        ItemRequestPayload itemRequestPayload = new ItemRequestPayload(i.getItemId(), i.getTitle(), i.getDescription(), i.getPrice(), i.getCategoryId());
-
+    public void addItem(@PathVariable String itemId, @RequestHeader String token) {
+        ItemResponsePayload i = itemService.findById(itemId);
         UserResponsePayload u = userService.findUserById(String.valueOf(tokenService.extractTokenDetails(token).getAuthCustomerId()));
-        UserRequestPayload userRequestPayload = new UserRequestPayload(u.getCustomerId(), u.getFirstName(), u.getLastName(), u.getEmail(), u.getUsername(), u.getPassword());
-        cartService.addItem(itemRequestPayload, userRequestPayload);
+
+        cartService.addItem(itemId, u.getCustomerId());
     }
     @PutMapping("/cart/remove{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void removeItem() {
+    public void removeItem(@PathVariable String itemId, @RequestHeader String token) {
 
     }
 }

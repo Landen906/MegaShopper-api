@@ -17,14 +17,13 @@ import java.util.List;
         name = "cart",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"item_id", "customer_id"})})
 public class Cart implements Serializable {
-    @Autowired
-    public Cart(CartRepository cartRepository) {
+    public Cart() {
         super();
         this.items = new ArrayList<>();
     }
 
-    @ManyToOne
-    @JoinTable(name = "items")
+    // @ManyToOne(targetEntity = java.util.List.class)
+    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
     private List<Item> items;
 
     @Id

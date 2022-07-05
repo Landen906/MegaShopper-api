@@ -5,16 +5,18 @@ import dev.megashopper.common.entities.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 
 @Data
 public class ItemResponsePayload {
+
     private String itemId;
-    private String title;
-    private String description;
-    private BigDecimal price;
-    private int categoryId;
+    private String customerId;
+
+    public ItemResponsePayload(Item item, User user) {
+        this.itemId = item.getItemId();
+        this.customerId = user.getCustomerId();
+    }
+
+    public ItemResponsePayload(Item item) {
+    }
 }
-
-
