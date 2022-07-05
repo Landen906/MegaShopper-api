@@ -31,6 +31,7 @@ public class User implements Comparable<User> {
     private String username;
     @Column(nullable = false)
     private Password password;
+    private Cart cart;
 
     public User(String firstName, String lastName, String email, String address, String username, Password password) {
         this.customerId = UUID.randomUUID().toString();
@@ -43,7 +44,13 @@ public class User implements Comparable<User> {
 
     public User(String firstName, String lastName, String email, String username, String password) {
     }
+    public Cart getCart() {
+        return cart;
+    }
 
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
     public String getCustomerId() {
         return customerId;
     }

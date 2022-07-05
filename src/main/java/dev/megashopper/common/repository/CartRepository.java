@@ -16,6 +16,5 @@ public interface CartRepository  extends JpaRepository<Cart,String> {
     boolean existsByCustomerId(String customerId);
 
     @Query("SELECT * FROM Items WHERE customerId = :?")
-    List<Cart> findItemsByCustomerId(String customerId);
-
+    List<Item> findItemsByCustomerId(String customerId);
 }

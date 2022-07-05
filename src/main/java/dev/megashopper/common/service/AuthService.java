@@ -12,11 +12,8 @@ import java.security.Principal;
 @Transactional
 public class AuthService {
 
-    private final UserService userService;
-
     @Autowired
     public AuthService(UserService userService) {
-        this.userService = userService;
     }
 
     public Principal authenticate(@Valid AuthRequest authRequest) {

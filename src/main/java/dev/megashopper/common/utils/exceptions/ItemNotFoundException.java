@@ -1,7 +1,7 @@
 package dev.megashopper.common.utils.exceptions;
 
 
-public class ItemNotFoundException extends Exception {
+public class ItemNotFoundException extends RuntimeException {
 
     public ItemNotFoundException() {
     }

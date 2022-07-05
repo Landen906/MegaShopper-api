@@ -1,5 +1,10 @@
 package dev.megashopper.common.entities;
 
+import dev.megashopper.common.repository.CartRepository;
+import dev.megashopper.common.repository.ItemRepository;
+import dev.megashopper.common.service.ItemService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.Array;
@@ -12,7 +17,8 @@ import java.util.List;
         name = "cart",
         uniqueConstraints = {@UniqueConstraint(columnNames = {"item_id", "customer_id"})})
 public class Cart implements Serializable {
-    public Cart() {
+    @Autowired
+    public Cart(CartRepository cartRepository) {
         super();
         this.items = new ArrayList<>();
     }
@@ -45,6 +51,10 @@ public class Cart implements Serializable {
         if (this.items == null)
             this.items = new ArrayList<>();
         this.items.addAll(Arrays.asList(items));
+    }
+
+    public void removeItem(Item... items) {
+        this.items.removeAll(Arrays.asList(items));
     }
 
     public String getCustomerId() {

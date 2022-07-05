@@ -17,20 +17,19 @@ public class CartResponse {
     private String customerId;
     private UserService userService;
 
-    public CartResponse(List<> item, User user, UserService userService) {
-        this.itemId = item.getItemId();
-        this.customerId = user.getCustomerId();
-        this.userService = userService;
-    }
 
     public CartResponse(Cart cart) {
-
+        this.customerId = cart.getCustomerId();
     }
 
-    public void createCart(Cart NewCart) {
-        Item item = new Item();
-        this.itemId = item.getItemId();
-        UserResponsePayload user = userService.findUserById(NewCart.getCustomerId());
-        this.customerId = user.getCustomerId();
+//    public void createCart(User user) {
+//        Item item = new Item();
+//        this.itemId = item.getItemId();
+//        UserResponsePayload user = userService.findUserById(NewCart.getCustomerId());
+//        this.customerId = user.getCustomerId();
+//    }
+    public void createCart(Cart cart) {
+        this.items = cart.getItems();
+        this.customerId = cart.getCustomerId();
     }
 }

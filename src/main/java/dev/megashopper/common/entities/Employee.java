@@ -74,4 +74,7 @@ public class Employee {
         this.email = email;
     }
 
+    public ResourceMetadata getMetadata() {
+        return metadata;
+    }
 }
