@@ -1,10 +1,12 @@
 package dev.megashopper.common.dtos;
 
+import dev.megashopper.common.entities.Password;
 import dev.megashopper.common.entities.User;
 import dev.megashopper.common.utils.web.validators.ValidatorMessageUtil;
 import dev.megashopper.common.utils.web.validators.groups.OnCreate;
 import dev.megashopper.common.utils.web.validators.groups.OnUpdate;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +17,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
 
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserRequestPayload {
 
     @Null(
@@ -76,7 +80,7 @@ public class UserRequestPayload {
     @NotNull(
             message = ValidatorMessageUtil.PASSWORD_REQUIRED_ON_CREATE,
             groups = OnCreate.class)
-    private String password;
+    private Password password;
 
     public User extractResource() {
 

@@ -19,9 +19,8 @@ import java.util.stream.Collectors;
 @Transactional
 public class CartService {
 
-    @Autowired
     private final CartRepository cartRepository;
-
+    @Autowired
     public CartService(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
     }

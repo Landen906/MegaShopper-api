@@ -41,9 +41,20 @@ public class User implements Comparable<User> {
         this.address = address;
         this.username = username;
     }
-
-    public User(String firstName, String lastName, String email, String username, String password) {
+    public User(String customerId, String firstName, String lastName, String email, String address, String username, Password password) {
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.username = username;
     }
+    public User(String firstName, String lastName, String email, String username, Password password) {
+    }
+
+    public User(String customerId, String firstName, String lastName, String email, String username) {
+    }
+
     public Cart getCart() {
         return cart;
     }
