@@ -6,7 +6,7 @@ phases:
       java: corretto8
   pre_build:
     commands:
-#      - aws s3 cp s3://MegaShopper-api-resourses/application-deploy.yml ./src/main/resources/application-deploy.yml
+      - aws s3 cp s3://MegaShopper-api-resourses/application-deploy.yml ./src/main/resources/application-deploy.yml
   build:
     commands:
       - mvn clean package
