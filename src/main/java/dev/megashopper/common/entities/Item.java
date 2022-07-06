@@ -23,6 +23,7 @@ public class Item {
     private BigDecimal price;
     @Column(name = "category_id", nullable = false)
     private int categoryId;
+    @Embedded
     private ResourceMetadata metadata;
 
     public Item(String title, String description, BigDecimal price, int categoryId) {

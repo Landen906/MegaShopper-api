@@ -12,6 +12,12 @@ import java.util.List;
 @Repository
 public interface CartRepository  extends JpaRepository<Cart,String> {
 
+
+    @Query("select (count(c) > 0) from Cart c where c.itemId = ?1")
+    boolean existsByitemId(String itemId);
+    @Query("select (count(c) > 0) from Cart c where c.customerId = ?1")
+    boolean existsBycustomerId(String customerId);
+
     boolean existsByItemId(String itemId);
     boolean existsByCustomerId(String customerId);
 

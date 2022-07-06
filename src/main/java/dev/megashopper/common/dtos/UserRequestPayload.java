@@ -1,5 +1,6 @@
 package dev.megashopper.common.dtos;
 
+import dev.megashopper.common.entities.Password;
 import dev.megashopper.common.entities.User;
 import dev.megashopper.common.utils.web.validators.ValidatorMessageUtil;
 import dev.megashopper.common.utils.web.validators.groups.OnCreate;
@@ -76,7 +77,7 @@ public class UserRequestPayload {
     @NotNull(
             message = ValidatorMessageUtil.PASSWORD_REQUIRED_ON_CREATE,
             groups = OnCreate.class)
-    private String password;
+    private Password password;
 
     public User extractResource() {
 
@@ -84,7 +85,7 @@ public class UserRequestPayload {
             return new User(firstName, lastName, email, username, password);
         }
 
-        return new User(customerId, firstName, lastName, email, username);
+        return new User(customerId, firstName, lastName, email, username, password);
     }
 
 }

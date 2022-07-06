@@ -9,13 +9,27 @@ import java.io.Serializable;
     uniqueConstraints = {@UniqueConstraint(columnNames = {"item_id", "customer_id"})})
 public class Cart implements Serializable {
     @Id
+
+    @Column(name = "cart_id", nullable = false)
+    private int cartId;
+
+
+
     @ManyToOne
+
     @Column(name = "item_id", nullable = false)
     private int itemId;
 
-    @Id
+
     @Column(name = "customer_id", nullable = false)
     private String customerId;
+
+    public Cart() {
+    }
+
+    public Cart(int cartId) {
+        this.cartId = cartId;
+    }
 
     public int getItemId() {
         return itemId;
