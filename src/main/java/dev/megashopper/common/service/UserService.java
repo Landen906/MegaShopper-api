@@ -121,7 +121,6 @@ public class UserService {
         }
 
     }
-
 //
 //    @SneakyThrows
 //    public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
@@ -178,20 +177,6 @@ public class UserService {
 //                .map(UserResponse::new)
 //                .orElseThrow(AuthenticationException::new));
 //    }
-
-=======
-
-    @SneakyThrows
-    public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
-        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword())
-                .map(UserResponsePayload::new)
-                .orElseThrow(AuthenticationException::new);
-    }
-    public UserResponsePayload findUserById(String id) {
-        return userRepository.findUserById(id)
-                .map(UserResponsePayload::new)
-                .orElseThrow(ResourceNotFoundException::new);
-    }
 
 
 }

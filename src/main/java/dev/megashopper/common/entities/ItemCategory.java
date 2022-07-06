@@ -12,23 +12,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "categories")
 
+@Data
+@NoArgsConstructor
 public class ItemCategory {
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     @Id
     @Column(name = "category_id", nullable = false, unique = true)
     private int categoryId;
