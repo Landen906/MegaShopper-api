@@ -41,29 +41,48 @@ public class Item {
         this.itemId = id;
     }
 
-     public ResourceMetadata getMetadata() {
-        return metadata;
-    }
-    
-    @Id
     public String getItemId() {
         return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public Item updateWith(Item item) {
-        return new Item(this.itemId, item.title, item.description, item.price, item.category.getCategoryId());
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public ItemCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ItemCategory category) {
+        this.category = category;
+    }
+
+    public ResourceMetadata getMetadata() {
+        return metadata;
     }
 
     public void setMetadata(ResourceMetadata metadata) {
