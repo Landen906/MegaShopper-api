@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,7 +53,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public boolean isUsernameAvailability(@Valid UsernameRequest request) {
+    public boolean isUsernameAvailable(@Valid UsernameRequest request) {
         return !userRepository.existsByUsername(request.getUsername());
     }
 
@@ -74,35 +75,18 @@ public class UserService {
         if (userRepository.existsByUsername(newUser.getUsername())) {
             throw new ResourcePersistenceException("There is already a user with that username!");
         }
-      
-     
-    /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
-     */
-    // Method
-//    public UserResponse createUser(User newUser.){
-//
-//        if (newUser == null ||
-//
-//                newUser.getUsername() == null || newUser.getUsername().equals("") ||
-//                newUser.getPassword() == null || newUser.getPassword().equals(""))
-//        {
-//            String msg = "Provided user data was invalid. Question and answer text must not be null or empty!";
-//            throw new InvalidRequestException(msg);
-//        }
-//
-//        return new UserResponse.(newUser).getCustomerId();
-//    }
 
         if (userRepository.existsByEmail(newUser.getEmail())) {
             throw new ResourcePersistenceException("There is already a user with that email!");
         }
 
-        newUser.setCustomerId();
-        userRepository.save(newUser);
+        newUser.setCustomerId(UUID.randomUUID().toString());
+
 
         return new ResourceCreationResponse(newUser.getCustomerId());
 
     }
+
 
     @Validated(OnUpdate.class)
     public void updateUser(@Valid UserRequestPayload updatedUserRequest) {
@@ -137,16 +121,16 @@ public class UserService {
         }
 
     }
-
-    @SneakyThrows
-    public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
-        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword())
-                .map(UserResponsePayload::new)
-                .orElseThrow(AuthenticationException::new);
-    }
-
-}
-
+//
+//    @SneakyThrows
+//    public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
+//        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword())
+//                .map(UserResponsePayload::new)
+//                .orElseThrow(AuthenticationException::new);
+//    }
+//
+//}
+//
 //    public UserResponse fetchUserBycustomerId(String customerId) {
 //        return userRepository.findById(customerId)
 //                .map(UserResponse::new)
@@ -193,8 +177,8 @@ public class UserService {
 //                .map(UserResponse::new)
 //                .orElseThrow(AuthenticationException::new));
 //    }
-//
-//
-//}
+
+
+}
 
 

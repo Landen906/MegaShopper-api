@@ -1,12 +1,14 @@
 package dev.megashopper.common.dtos;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 
-
+@Component
 public class JwtConfig {
 
     @Value("${jwt.secret}")

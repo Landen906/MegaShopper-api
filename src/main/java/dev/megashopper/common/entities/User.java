@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -49,7 +48,7 @@ public class User implements Comparable<User> {
         this.salt = password.getSalt();
     }
 
-    public User(String firstName, String lastName, String email, String username, String password) {
+    public User(String firstName, String lastName, String email, String username, Password password) {
     }
 
     public void setCustomerId() {

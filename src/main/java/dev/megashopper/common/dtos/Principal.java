@@ -1,24 +1,25 @@
 package dev.megashopper.common.dtos;
 
 
+import dev.megashopper.common.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
-@AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
 public class Principal {
+    private String authUserId;
+    private String authUsername;
 
-    private String authCustomerId;
-    private String email;
-    public Principal(UserResponsePayload user) {
-        this.authCustomerId = user.getCustomerId();
+    public Principal(UserResponse user) {
+        this.authUserId = String.valueOf(user.getCustomerId());
+        this.authUsername = String.valueOf(user.getUsername());
     }
 
-    public Principal(String authCustomerId) {
-        this.authCustomerId = authCustomerId;
+    public Principal(String authUserId, String authUserRole) {
+        this.authUserId = authUserId;
+        this.authUsername = authUserRole;
     }
 }

@@ -8,7 +8,9 @@ import io.jsonwebtoken.Jwts;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+
 import java.util.Date;
+
 
 @AllArgsConstructor
 @Component
@@ -19,9 +21,9 @@ public class TokenService {
         long now = System.currentTimeMillis();
 
         return Jwts.builder()
-                   .setId(subject.getAuthCustomerId())
+                   .setId(subject.getAuthUserId())
                    .setIssuer("megashopper")
-                   .claim("email", subject.getEmail())
+                   .claim("email", subject.getAuthUsername())
                    .setIssuedAt(new Date(now))
                    .setExpiration(new Date(now + jwtConfig.getExpiration()))
                    .signWith(jwtConfig.getSigAlg(), jwtConfig.getSigningKey()).compact();
