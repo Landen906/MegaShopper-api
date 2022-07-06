@@ -9,9 +9,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @NoArgsConstructor
 public class AuthRequest {
-    @Length(
-            message = ValidatorMessageUtil.USERNAME_REQUIREMENTS,
-            min = 3)
-    private String username;
+    @Length(message = ValidatorMessageUtil.EMAIL_REQUIREMENTS)
+    private String email;
     private Password password;
 }

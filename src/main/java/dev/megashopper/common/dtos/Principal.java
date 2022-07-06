@@ -11,16 +11,19 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 public class Principal {
     private String authUserId;
-    private String authUsername;
+    private String authEmail;
 
     public Principal(UserResponse user) {
         this.authUserId = String.valueOf(user.getCustomerId());
-        this.authUsername = String.valueOf(user.getUsername());
+        this.authEmail = String.valueOf(user.getEmail());
     }
 
     public Principal(String authUserId, String authUserRole) {
         this.authUserId = authUserId;
-        this.authUsername = authUserRole;
+        this.authEmail = authUserRole;
+    }
+
+    public Principal(UserResponsePayload userResponsePayload) {
     }
 
     public String getAuthCustomerId() {
