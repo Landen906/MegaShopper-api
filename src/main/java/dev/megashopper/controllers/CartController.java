@@ -41,7 +41,7 @@ public class CartController {
 
         cartService.addItem(itemId, u.getCustomerId());
     }
-    @PutMapping("/cart/remove{id}")
+    @PutMapping("/cart/remove/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void removeItem(@PathVariable String itemId, @RequestHeader String token) {
 
