@@ -54,6 +54,36 @@ public class Item {
         this.itemId = UUID.randomUUID().toString();
     }
 
+    @Id
+    public String getItemId() {
+        return itemId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    @Id
+    public int getCategoryId() {
+        return categoryId;
+    }
+/*
+TODO: Please read note!!
+The updateWith method is a simple static factory you can use to update an item’s properties, preserving its id.
+It favors immutability, making the code safer and contemporary.
+RESEARCH MATERIAL: https://auth0.com/blog/spring-boot-java-tutorial-build-a-crud-api/
+ */
+    public Item updateWith(Item item) {
+        return new Item(this.itemId, item.title, item.description, item.price, item.categoryId);
+    }
 
 
 }
