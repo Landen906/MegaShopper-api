@@ -23,7 +23,7 @@ public class TokenService {
         return Jwts.builder()
                    .setId(subject.getAuthUserId())
                    .setIssuer("megashopper")
-                   .claim("email", subject.getAuthUsername())
+                   .claim("email", subject.getAuthEmail())
                    .setIssuedAt(new Date(now))
                    .setExpiration(new Date(now + jwtConfig.getExpiration()))
                    .signWith(jwtConfig.getSigAlg(), jwtConfig.getSigningKey()).compact();
