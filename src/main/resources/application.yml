@@ -7,4 +7,4 @@ spring:
   application:
     name: megashopper-api
   profiles:
-    default: local
+    default: deploy
