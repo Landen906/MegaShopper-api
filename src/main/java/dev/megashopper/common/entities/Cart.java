@@ -30,7 +30,7 @@ public class Cart implements Serializable {
     private int cartId;
 
     @OneToOne
-    @Column(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false)
     private String customerId;
 
 
