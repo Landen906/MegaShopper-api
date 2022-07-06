@@ -2,6 +2,7 @@ package dev.megashopper.common.service;
 
 import dev.megashopper.common.dtos.ItemResponsePayload;
 import dev.megashopper.common.repository.ItemRepository;
+import dev.megashopper.common.utils.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,5 +27,9 @@ public class ItemService {
                 .map(ItemResponsePayload::new)
                 .collect(Collectors.toList());
     }
-
+    public ItemResponsePayload findById(String id) {
+        return itemRepository.findById(id)
+                .map(ItemResponsePayload::new)
+                .orElseThrow(ResourceNotFoundException::new);
+    }
 }

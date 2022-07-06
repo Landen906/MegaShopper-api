@@ -1,20 +1,10 @@
 package dev.megashopper.common.entities;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "customers")
-
-@Data
-@NoArgsConstructor
 public class User implements Comparable<User> {
 
     @Id
@@ -32,10 +22,9 @@ public class User implements Comparable<User> {
     private String username;
     @Column(nullable = false)
     private Password password;
-    @Setter(AccessLevel.NONE)
-    private byte[] hash;
-    @Setter(AccessLevel.NONE)
-    private byte[] salt;
+
+    @OneToOne(mappedBy = "customerId")
+    private Cart cart;
 
     public User(String firstName, String lastName, String email, String address, String username, Password password) {
         this.customerId = UUID.randomUUID().toString();
@@ -44,20 +33,79 @@ public class User implements Comparable<User> {
         this.email = email;
         this.address = address;
         this.username = username;
-        this.hash = password.getHash();
-        this.salt = password.getSalt();
+        this.password = password;
+    }
+    public User(String customerId, String firstName, String lastName, String email, String address, String username, Password password) {
+        this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.username = username;
     }
 
-    public User(String firstName, String lastName, String email, String username, Password password) {
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerId() {
-        this.customerId = UUID.randomUUID().toString();
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Password getPassword() {
+        return password;
     }
 
     public void setPassword(Password password) {
-        this.hash=password.getHash();
-        this.salt=password.getSalt();
+        this.password = password;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
     public int compareTo(User o) {
         if (this == o) return 0;

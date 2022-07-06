@@ -35,6 +35,15 @@ public class Item {
         this.categoryId = categoryId;
     }
 
+    public Item(String itemId, String title, String description, BigDecimal price, int categoryId) {
+        this.itemId = itemId;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.categoryId = categoryId;
+        this.metadata = metadata;
+    }
+
     public Item() {
         super();
         this.itemId = UUID.randomUUID().toString();

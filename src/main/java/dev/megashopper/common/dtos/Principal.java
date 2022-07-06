@@ -22,4 +22,8 @@ public class Principal {
         this.authUserId = authUserId;
         this.authUsername = authUserRole;
     }
+
+    public String getAuthCustomerId() {
+        return authUserId;
+    }
 }

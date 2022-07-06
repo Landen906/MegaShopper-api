@@ -6,6 +6,7 @@ import dev.megashopper.common.utils.web.validators.ValidatorMessageUtil;
 import dev.megashopper.common.utils.web.validators.groups.OnCreate;
 import dev.megashopper.common.utils.web.validators.groups.OnUpdate;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +16,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
 
+<<<<<<< HEAD
+
 @Data
+@AllArgsConstructor
+=======
+@Data
+>>>>>>> c2ada1994d605a670ce9f68e668d0ca737dd4214
 @NoArgsConstructor
 public class UserRequestPayload {
 

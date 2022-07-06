@@ -14,6 +14,7 @@ import java.security.Principal;
 @Service
 @Transactional
 public class AuthService {
+
     private final UserService userService;
 
     @Autowired
