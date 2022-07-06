@@ -9,9 +9,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "items")
-
-@Data
-@AllArgsConstructor
 public class Item {
     @Id
     @Column(name = "item_id", nullable = false, unique = true)
@@ -22,38 +19,32 @@ public class Item {
     private String description;
     @Column(name = "price", nullable = false)
     private BigDecimal price;
-    @Column(name = "category_id", nullable = false)
-    private int categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private ItemCategory category;
     @Embedded
     private ResourceMetadata metadata;
 
-    public Item(String title, String description, BigDecimal price, int categoryId) {
-        this.itemId = UUID.randomUUID().toString();
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.categoryId = categoryId;
-    }
-
-    public Item(String itemId, String title, String description, BigDecimal price, int categoryId) {
-        this.itemId = itemId;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.categoryId = categoryId;
-        this.metadata = metadata;
-    }
-
     public Item() {
         super();
-        this.itemId = UUID.randomUUID().toString();
-        this.metadata = new ResourceMetadata();
     }
 
-    public void setItemId() {
-        this.itemId = UUID.randomUUID().toString();
+    public Item(String title, String description, BigDecimal price, int categoryId) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.category = new ItemCategory(categoryId);
     }
 
+    public Item(String id, String title, String description, BigDecimal price, int categoryId) {
+        this(title, description, price, categoryId);
+        this.itemId = id;
+    }
+
+     public ResourceMetadata getMetadata() {
+        return metadata;
+    }
+    
     @Id
     public String getItemId() {
         return itemId;
@@ -75,15 +66,23 @@ public class Item {
     public int getCategoryId() {
         return categoryId;
     }
-/*
-TODO: Please read note!!
-The updateWith method is a simple static factory you can use to update an item’s properties, preserving its id.
-It favors immutability, making the code safer and contemporary.
-RESEARCH MATERIAL: https://auth0.com/blog/spring-boot-java-tutorial-build-a-crud-api/
- */
     public Item updateWith(Item item) {
         return new Item(this.itemId, item.title, item.description, item.price, item.categoryId);
     }
 
+    public void setMetadata(ResourceMetadata metadata) {
+        this.metadata = metadata;
+    }
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId='" + itemId + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                ", metadata=" + metadata +
+                '}';
+    }
 }

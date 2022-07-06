@@ -12,6 +12,7 @@ public class Password {
     private byte[] salt;
 
     public Password() {
+        super();
     }
 
     public Password(byte[] hash, byte[] salt) {

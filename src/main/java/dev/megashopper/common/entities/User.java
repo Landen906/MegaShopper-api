@@ -20,36 +20,33 @@ public class User implements Comparable<User> {
     private String address;
     @Column(nullable = false, unique = true, columnDefinition  = "VARCHAR CHECK (LENGTH(username) >= 8)")
     private String username;
+    @Embedded
     @Column(nullable = false)
     private Password password;
 
-    @OneToOne(mappedBy = "customerId")
+    @JoinColumn(name = "cart_id", nullable = false)
+    @OneToOne(mappedBy = "customer")
     private Cart cart;
 
-    public User(String firstName, String lastName, String email, String address, String username, Password password) {
+    public User() {
+        super();
+    }
+
+    public User(String firstName, String lastName, String email, String username, Password password) {
         this.customerId = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.address = address;
         this.username = username;
         this.password = password;
+    }
+    public User(String firstName, String lastName, String email, String address, String username, Password password) {
+        this(firstName, lastName, email, username, password);
+        this.address = address;
     }
     public User(String customerId, String firstName, String lastName, String email, String address, String username, Password password) {
+        this(firstName, lastName, email, address, username, password);
         this.customerId = customerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.address = address;
-        this.username = username;
-    }
-
-    public User(String firstName, String lastName, String email, String username, Password password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.username = username;
-        this.password = password;
     }
 
     public String getCustomerId() {
@@ -123,5 +120,20 @@ public class User implements Comparable<User> {
             return -1;
         }
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "customerId='" + customerId + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", username='" + username + '\'' +
+                ", password=" + password +
+                ", cart=" + cart +
+                '}';
+    }
+
 }
 

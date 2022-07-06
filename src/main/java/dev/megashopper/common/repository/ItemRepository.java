@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, String> {
 
-    @Query("select (count(i) > 0) from Item i where i.itemId = ?1")
+    @Query("select (count(i) > 0) from Item i where i.itemId = :itemId")
     boolean existsByItemId(int itemId);
-    @Query("select (count(i) > 0) from Item i where i.title = ?1")
+    @Query("select (count(i) > 0) from Item i where i.title = :title")
     boolean existsByTitle(String title);
    // boolean existByCategoryId(int categoryId);
 
