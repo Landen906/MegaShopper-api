@@ -121,12 +121,6 @@ public class UserService {
         }
 
     }
-
-    public UserResponsePayload findById(String id) {
-        return userRepository.findById(id)
-                .map(UserResponsePayload::new)
-                .orElseThrow(ResourceNotFoundException::new);
-    }
 //
 //    @SneakyThrows
 //    public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
