@@ -6,33 +6,39 @@ import dev.megashopper.common.service.UserResponse;
 import dev.megashopper.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
 // Rest controller combines @Controller and @ResponseBody(changes return value to HTTP response)
-//@RestController
-//@RequestMapping("/users")
-//public class UserController {
-//
-//    private final UserService userService;
-//
-//    @Autowired
-//    public UserController(UserService userService) {
-//        this.userService = userService;
-//    }
-//
-//
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+
+
 /* TODO: This code will not work until it has been implemented into UserRepository
 *   */
 //    @GetMapping(produces = "application/json")
 //    public <UserResponse> List<UserResponse> getAllUsers() {
 //        return (List<UserResponse>) userService.fetchAllUsers();
 //    }
-
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @PostMapping(consumes = "application/json", produces = "application/json")
+//    Public ResourceCreationResponse postNewUser(@RequestBody UserResponsePayload newUserInfo) {
+//        return userService.createUser(newUserInfo);
+//    }
+//
 //    @GetMapping("/id/{customerId}")
 //    public <UserResponse> UserResponse getUserById(@PathVariable String customerId) {
 //        return (UserResponse) userService.(customerId);
@@ -40,10 +46,10 @@ import java.util.Map;
 //
 //    /* TODO: Uncomment/Need Import from UserRepository after implementing 'createUser' method
 //     */
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping(consumes = "application/json", produces = "application/json")
-//    public ResourceCreationResponse postNewUser (@RequestBody NewUserRequest newUser) {
-//        return userService.createUser(newUser);
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public ResourceCreationResponse postNewUser (@RequestBody UserRequestPayload newUser) {
+        return userService.createUser(newUser);
 //
 //    // TODO: Need Help, I don't think it should return 'null'
 //    @GetMapping(produces = "application/json")
@@ -81,6 +87,6 @@ import java.util.Map;
 //    public void updateUserInfo(@RequestBody UserRequestPayload updatedUserInfo) {
 //        userService.updateUser(updatedUserInfo);
 //
-//    }
+    }
 //
-//}
+}
