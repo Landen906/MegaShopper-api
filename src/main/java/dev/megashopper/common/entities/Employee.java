@@ -1,8 +1,10 @@
 package dev.megashopper.common.entities;
 
+import dev.megashopper.common.datasource.ResourceMetadata;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "employees")
@@ -19,6 +21,7 @@ public class Employee {
     private Password password; // used to store the password, only thing exposed to the code
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+    private ResourceMetadata metadata;
 
     public Employee() {
     }
@@ -70,4 +73,5 @@ public class Employee {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
