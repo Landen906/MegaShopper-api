@@ -25,6 +25,22 @@ public class Item {
     @Embedded
     private ResourceMetadata metadata;
 
+    public Item() {
+        super();
+    }
+
+    public Item(String title, String description, BigDecimal price, int categoryId) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.category = new ItemCategory(categoryId);
+    }
+
+    public Item(String id, String title, String description, BigDecimal price, int categoryId) {
+        this(title, description, price, categoryId);
+        this.itemId = id;
+    }
+
     public String getItemId() {
         return itemId;
     }
