@@ -62,12 +62,8 @@ public class Item {
         return price;
     }
 
-    @Id
-    public int getCategoryId() {
-        return categoryId;
-    }
     public Item updateWith(Item item) {
-        return new Item(this.itemId, item.title, item.description, item.price, item.categoryId);
+        return new Item(this.itemId, item.title, item.description, item.price, item.category.getCategoryId());
     }
 
     public void setMetadata(ResourceMetadata metadata) {
