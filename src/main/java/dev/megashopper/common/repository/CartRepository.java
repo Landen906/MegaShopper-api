@@ -10,12 +10,12 @@ import java.util.List;
 
 @Repository
 public interface CartRepository  extends JpaRepository<Cart,String> {
-    @Query("select (count(c) > 0) from Cart c where c.itemId = ?1")
+    @Query(nativeQuery = true, value = "select (count(c) > 0) from carts c where c.itemId = :itemId")
     boolean existsByItemId(String itemId);
 
-    @Query("select (count(c) > 0) from Cart c where c.customerId = ?1")
+    @Query(nativeQuery = true, value = "select (count(c) > 0) from carts c where c.customer_id = :customerId")
     boolean existsByCustomerId(String customerId);
 
-    @Query("SELECT * FROM Items WHERE customerId = :?")
+    @Query(nativeQuery = true, value = "SELECT * FROM Items WHERE customer_id = :customerId")
     List<Item> findItemsByCustomerId(String customerId);
 }

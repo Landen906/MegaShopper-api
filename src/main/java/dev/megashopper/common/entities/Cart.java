@@ -13,46 +13,33 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-@Table(
-        name = "cart",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"item_id", "customer_id"})})
+@Table(name = "carts")
 public class Cart implements Serializable {
+
+    @Id
+    @Column(name = "cart_id", nullable = false)
+    private int cartId;
+
+    @ManyToMany
+    @JoinTable(
+        name = "cart_items",
+        joinColumns = @JoinColumn(name = "cart_id"),
+        inverseJoinColumns = @JoinColumn(name = "item_id")
+    )
+    private List<Item> items;
+
+    @OneToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private User customer;
+
     public Cart() {
         super();
         this.items = new ArrayList<>();
     }
 
-    // @ManyToOne(targetEntity = java.util.List.class)
-    @JoinColumn(name = "item_id", referencedColumnName = "item_id")
-    private List<Item> items;
-    @Id
-    @Column(name = "cart_id", nullable = false)
-    private int cartId;
-
-    @OneToOne
-    @Column(name = "customer_id", nullable = false)
-    private String customerId;
-
-
     public Cart(int cartId) {
+        this();
         this.cartId = cartId;
-    }
-    public void addItems(Item... items) {
-        if (this.items == null)
-            this.items = new ArrayList<>();
-        this.items.addAll(Arrays.asList(items));
-    }
-
-    public void removeItem(Item... items) {
-        this.items.removeAll(Arrays.asList(items));
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
     }
 
     public int getCartId() {
@@ -63,11 +50,39 @@ public class Cart implements Serializable {
         this.cartId = cartId;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
+
+    public User getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(User customer) {
+        this.customer = customer;
+    }
+
+    public void addItems(Item... items) {
+        if (this.items == null)
+            this.items = new ArrayList<>();
+        this.items.addAll(Arrays.asList(items));
+    }
+
+    public void removeItem(Item... items) {
+        this.items.removeAll(Arrays.asList(items));
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", items=" + items +
+                ", customerId=" + customer.getCustomerId() +
+                '}';
+    }
+
 }

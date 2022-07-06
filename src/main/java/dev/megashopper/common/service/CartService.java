@@ -41,7 +41,7 @@ public class CartService {
 
         cart.addItems(item);
         cartRepository.save(cart);
-        return new ResourceCreationResponse(cart.getCustomerId());
+        return new ResourceCreationResponse(String.valueOf(cart.getCartId()));
     }
     public void removeItem(ItemRequestPayload itemRequestPayload, UserRequestPayload userRequestPayload) {
         Item item = itemRequestPayload.extractResource();

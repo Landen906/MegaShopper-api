@@ -15,12 +15,15 @@ public class Employee {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Embedded
-    private Password password; // used to store the password, only thing exposed to the code
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @Embedded
+    @Column(nullable = false)
+    private Password password; // used to store the password, only thing exposed to the code
+
     public Employee() {
+        super();
     }
 
     public Employee(int employeeId, String firstName, String lastName, Password password, String email) {

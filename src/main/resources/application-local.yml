@@ -1,12 +1,12 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://megashopper.crt4qa9vzj3y.us-east-2.rds.amazonaws.com
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=megashopper
     username: postgres
-    password: TeamCFTW1
+    password: revature
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: create-drop
 
