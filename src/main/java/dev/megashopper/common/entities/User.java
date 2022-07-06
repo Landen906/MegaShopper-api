@@ -13,6 +13,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "customers")
 
+@Data
+@NoArgsConstructor
 public class User implements Comparable<User> {
 
     @Id
@@ -30,6 +32,10 @@ public class User implements Comparable<User> {
     private String username;
     @Column(nullable = false)
     private Password password;
+    @Setter(AccessLevel.NONE)
+    private byte[] hash;
+    @Setter(AccessLevel.NONE)
+    private byte[] salt;
 
     public User(String firstName, String lastName, String email, String address, String username, Password password) {
         this.customerId = UUID.randomUUID().toString();
@@ -38,61 +44,11 @@ public class User implements Comparable<User> {
         this.email = email;
         this.address = address;
         this.username = username;
+        this.hash = password.getHash();
+        this.salt = password.getSalt();
     }
 
     public User(String firstName, String lastName, String email, String username, Password password) {
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public Password getPassword() {
-        return password;
     }
 
     public void setCustomerId() {
@@ -100,7 +56,8 @@ public class User implements Comparable<User> {
     }
 
     public void setPassword(Password password) {
-        this.password = password;
+        this.hash=password.getHash();
+        this.salt=password.getSalt();
     }
     public int compareTo(User o) {
         if (this == o) return 0;
