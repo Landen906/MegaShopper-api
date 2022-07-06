@@ -29,6 +29,7 @@ public class Cart implements Serializable {
     @Column(name = "cart_id", nullable = false)
     private int cartId;
 
+    @OneToOne
     @Column(name = "customer_id", nullable = false)
     private String customerId;
 
