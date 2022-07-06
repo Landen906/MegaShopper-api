@@ -39,7 +39,7 @@ public class CartController {
         ItemResponsePayload i = itemService.findById(itemId);
         UserResponsePayload u = userService.findUserById(String.valueOf(tokenService.extractTokenDetails(token).getAuthCustomerId()));
 
-        cartService.addItem(itemId, u.getCustomerId());
+        cartService.addItem(i.getItemId(), u.getCustomerId());
     }
     @PutMapping("/cart/remove/{id}")
     @ResponseStatus(HttpStatus.OK)
