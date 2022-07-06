@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
-
+@Data
+@NoArgsConstructor
 public class UserResponsePayload {
 
     private String customerId;
@@ -26,6 +26,7 @@ public class UserResponsePayload {
         this.username = user.getUsername();
         this.password = user.getPassword();
     }
+<<<<<<< HEAD
 
     public String getCustomerId() {
         return customerId;
@@ -58,4 +59,6 @@ public class UserResponsePayload {
     public void setPassword(Password password) {
         this.password = password;
     }
+=======
+>>>>>>> c2ada1994d605a670ce9f68e668d0ca737dd4214
 }

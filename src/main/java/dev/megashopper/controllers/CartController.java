@@ -37,7 +37,7 @@ public class CartController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addItem(@PathVariable String itemId, @RequestHeader String token) {
         ItemResponsePayload i = itemService.findById(itemId);
-        UserResponsePayload u = userService.findUserById(String.valueOf(tokenService.extractTokenDetails(token).getAuthCustomerId()));
+        UserResponsePayload u = userService.findById(String.valueOf(tokenService.extractTokenDetails(token).getAuthCustomerId()));
 
         cartService.addItem(i.getItemId(), u.getCustomerId());
     }

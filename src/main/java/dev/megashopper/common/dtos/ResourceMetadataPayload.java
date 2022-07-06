@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-
-
+@Data
+@NoArgsConstructor
 public class ResourceMetadataPayload {
 
     private LocalDateTime creationDatetime;

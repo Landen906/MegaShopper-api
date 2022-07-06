@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,7 +53,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public boolean isUsernameAvailability(@Valid UsernameRequest request) {
+    public boolean isUsernameAvailable(@Valid UsernameRequest request) {
         return !userRepository.existsByUsername(request.getUsername());
     }
 
@@ -79,12 +80,13 @@ public class UserService {
             throw new ResourcePersistenceException("There is already a user with that email!");
         }
 
-        newUser.setCustomerId();
-        userRepository.save(newUser);
+        newUser.setCustomerId(UUID.randomUUID().toString());
+
 
         return new ResourceCreationResponse(newUser.getCustomerId());
 
     }
+
 
     @Validated(OnUpdate.class)
     public void updateUser(@Valid UserRequestPayload updatedUserRequest) {
@@ -120,17 +122,68 @@ public class UserService {
 
     }
 
-    @SneakyThrows
-    public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
-        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword())
-                .map(UserResponsePayload::new)
-                .orElseThrow(AuthenticationException::new);
-    }
-    public UserResponsePayload findUserById(String id) {
-        return userRepository.findUserById(id)
+    public UserResponsePayload findById(String id) {
+        return userRepository.findById(id)
                 .map(UserResponsePayload::new)
                 .orElseThrow(ResourceNotFoundException::new);
     }
+//
+//    @SneakyThrows
+//    public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
+//        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword())
+//                .map(UserResponsePayload::new)
+//                .orElseThrow(AuthenticationException::new);
+//    }
+//
+//}
+//
+//    public UserResponse fetchUserBycustomerId(String customerId) {
+//        return userRepository.findById(customerId)
+//                .map(UserResponse::new)
+//                .orElseThrow(InvalidRequestException::new);
+//    }
+//
+//    public UserResponse fetchUserByUsername(@Min(3) String username) {
+//        return userRepository.findUserByUsername(username)
+//                .map(UserResponse::new)
+//                .orElseThrow(InvalidRequestException::new);
+//    }
+//
+//
+//    public UserResponse fetchUserByEmail(@Email String email) {
+//        return UserRepository.findUserByEmail(email)
+//                .map(UserResponse::new)
+//                .orElseThrow(InvalidRequestException::new);
+//    }
+//
+//    public UserResponse createUser(@Valid NewUserRequest newUserRequest) {
+//
+//        User newUser = newUserRequest.extractResource();
+//
+//        if (userRepository.existsByUsername(newUser.getUsername())) {
+//            throw new InvalidRequestException("There is already a user with that username!");
+//        }
+//
+//        if (userRepository.existsByEmail(newUser.getEmail())) {
+//            throw new InvalidRequestException("There is already a user with that email!");
+//        }
+//
+//        new.setcustomerId(UUID.randomUUID().toString());
+//        userRepository.save(newUser);
+//
+//        return new InvalidRequestException(.getcustomerId());
+//    }
+//
+//    public void updateUser(@Valid UpdateUserRequest updateUserRequest) {
+//        // TODO: 6/26/22 implement update
+//    }
+//
+//    public UserResponse authenticateUserCredentials(@Valid AuthRequest authRequest) {
+//        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword()
+//                .map(UserResponse::new)
+//                .orElseThrow(AuthenticationException::new));
+//    }
+
 
 }
 

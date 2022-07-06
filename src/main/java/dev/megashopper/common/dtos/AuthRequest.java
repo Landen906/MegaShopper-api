@@ -6,20 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-
-
+@Data
+@NoArgsConstructor
 public class AuthRequest {
     @Length(
             message = ValidatorMessageUtil.USERNAME_REQUIREMENTS,
             min = 3)
     private String username;
     private Password password;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Password getPassword() {
-        return password;
-    }
 }
