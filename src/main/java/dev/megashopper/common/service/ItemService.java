@@ -1,5 +1,6 @@
 package dev.megashopper.common.service;
 
+import dev.megashopper.common.entities.Item;
 import dev.megashopper.common.dtos.ItemResponsePayload;
 import dev.megashopper.common.repository.ItemRepository;
 import dev.megashopper.common.utils.exceptions.ResourceNotFoundException;
@@ -13,13 +14,13 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class ItemService {
-
     private final ItemRepository itemRepository;
 
     @Autowired
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
+
 
     public List<ItemResponsePayload> fetchAllItems() {
         return itemRepository.findAll()
@@ -31,5 +32,13 @@ public class ItemService {
         return itemRepository.findById(id)
                 .map(ItemResponsePayload::new)
                 .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    public void createItem(Item NewItem) {
+        itemRepository.CreateItem(NewItem);
+    }
+
+    public void deleteitemById(String id) {
+        itemRepository.deleteById(id);
     }
 }
