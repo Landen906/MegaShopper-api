@@ -76,7 +76,8 @@ public class UserService {
         if (userRepository.existsByUsername(newUser.getUsername())) {
             throw new ResourcePersistenceException("There is already a user with that username!");
         }
-        if (user)
+        if (newUser.getUsername().length() < 7)
+            throw new ResourcePersistenceException("Username must be at least 8 characters in length");
         if (userRepository.existsByEmail(newUser.getEmail())) {
             throw new ResourcePersistenceException("There is already a user with that email!");
         }
