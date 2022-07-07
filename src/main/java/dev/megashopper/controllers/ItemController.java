@@ -6,6 +6,7 @@ import dev.megashopper.common.dtos.ResourceCreationResponse;
 import dev.megashopper.common.entities.Item;
 import dev.megashopper.common.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,17 @@ public class ItemController {
         return itemService.fetchAllItems();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public ResourceCreationResponse createItem(@RequestBody ItemRequestPayload newItem) {
+        return itemService.createItem(newItem);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping(consumes = "application/json")
+    public void updateItemInfo(@RequestBody ItemRequestPayload updatedItemInfo) {
+        itemService.updateItem(updatedItemInfo);
+    }
 
     @DeleteMapping()
     public void deleteItem(String id) {

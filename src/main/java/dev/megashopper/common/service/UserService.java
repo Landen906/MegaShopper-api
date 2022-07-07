@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.naming.AuthenticationException;
+import javax.persistence.Entity;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -128,63 +129,10 @@ public class UserService {
                 .map(UserResponsePayload::new)
                 .orElseThrow(ResourceNotFoundException::new);
     }
-//
-//    @SneakyThrows
-//    public UserResponsePayload authenticateUserCredentials(@Valid AuthRequest authRequest) {
-//        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword())
-//                .map(UserResponsePayload::new)
-//                .orElseThrow(AuthenticationException::new);
-//    }
-//
-//}
-//
-//    public UserResponse fetchUserBycustomerId(String customerId) {
-//        return userRepository.findById(customerId)
-//                .map(UserResponse::new)
-//                .orElseThrow(InvalidRequestException::new);
-//    }
-//
-//    public UserResponse fetchUserByUsername(@Min(3) String username) {
-//        return userRepository.findUserByUsername(username)
-//                .map(UserResponse::new)
-//                .orElseThrow(InvalidRequestException::new);
-//    }
-//
-//
-//    public UserResponse fetchUserByEmail(@Email String email) {
-//        return UserRepository.findUserByEmail(email)
-//                .map(UserResponse::new)
-//                .orElseThrow(InvalidRequestException::new);
-//    }
-//
-//    public UserResponse createUser(@Valid NewUserRequest newUserRequest) {
-//
-//        User newUser = newUserRequest.extractResource();
-//
-//        if (userRepository.existsByUsername(newUser.getUsername())) {
-//            throw new InvalidRequestException("There is already a user with that username!");
-//        }
-//
-//        if (userRepository.existsByEmail(newUser.getEmail())) {
-//            throw new InvalidRequestException("There is already a user with that email!");
-//        }
-//
-//        new.setcustomerId(UUID.randomUUID().toString());
-//        userRepository.save(newUser);
-//
-//        return new InvalidRequestException(.getcustomerId());
-//    }
-//
-//    public void updateUser(@Valid UpdateUserRequest updateUserRequest) {
-//        // TODO: 6/26/22 implement update
-//    }
-//
-//    public UserResponse authenticateUserCredentials(@Valid AuthRequest authRequest) {
-//        return userRepository.findUserByUsernameAndPassword(authRequest.getUsername(), authRequest.getPassword()
-//                .map(UserResponse::new)
-//                .orElseThrow(AuthenticationException::new));
-//    }
 
+    public void deleteCustomerById(String customerId) {
+        userRepository.deleteById(customerId);
+    }
 
 }
 
