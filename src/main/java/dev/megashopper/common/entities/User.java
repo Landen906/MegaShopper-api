@@ -1,5 +1,7 @@
 package dev.megashopper.common.entities;
 
+import dev.megashopper.common.utils.Generation;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -23,7 +25,6 @@ public class User implements Comparable<User> {
     @Embedded
     @Column(nullable = false)
     private Password password;
-
     @JoinColumn(name = "cart_id", nullable = false)
     @OneToOne(mappedBy = "customer")
     private Cart cart;
@@ -32,12 +33,16 @@ public class User implements Comparable<User> {
         super();
     }
 
-    public User(String firstName, String lastName, String email, String username, Password password) {
+    public User(String firstName, String lastName, String email, String username) {
         this.customerId = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.username = username;
+    }
+
+    public User(String firstName, String lastName, String email, String username, Password password) {
+        this(firstName, lastName, email, username);
         this.password = password;
     }
     public User(String firstName, String lastName, String email, String address, String username, Password password) {
@@ -48,6 +53,7 @@ public class User implements Comparable<User> {
         this(firstName, lastName, email, address, username, password);
         this.customerId = customerId;
     }
+
 
     public String getCustomerId() {
         return customerId;

@@ -30,7 +30,7 @@ public class AuthController {
 
     @PostMapping(consumes = "application/json", produces = "application/json")
     public Principal authenticate(@RequestBody AuthRequest authRequest, HttpServletResponse resp) {
-        Principal payload = (Principal) authService.authenticate(authRequest);
+        Principal payload = authService.authenticate(authRequest);
         String token = tokenService.generateToken(payload);
         resp.setHeader("Authorization", token);
         return payload;

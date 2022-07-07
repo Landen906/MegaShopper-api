@@ -1,4 +1,4 @@
 package dev.megashopper.common.utils.web.validators.groups;
 
-public class OnCreate {
+public interface OnCreate {
 }

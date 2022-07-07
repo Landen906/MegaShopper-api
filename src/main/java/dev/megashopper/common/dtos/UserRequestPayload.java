@@ -81,17 +81,14 @@ public class UserRequestPayload {
     @NotNull(
             message = ValidatorMessageUtil.PASSWORD_REQUIRED_ON_CREATE,
             groups = OnCreate.class)
-    private Password password;
-    private String passInput;
+    private String password;
+    private String address;
     public User extractResource() {
 
         if (customerId == null) {
-            return new User(firstName, lastName, email, username, password);
+            return new User(firstName, lastName, email, username);
         }
-        if (password == null) {
-            return new User(firstName, lastName, email, username, Generation.generatePassword(passInput));
-        }
-        return new User(customerId, firstName, lastName, email, username, password);
-    }
 
+        return new User(customerId, firstName, lastName, email, username, Generation.generatePassword(password));
+    }
 }

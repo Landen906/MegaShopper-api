@@ -1,17 +1,12 @@
 package dev.megashopper.controllers;
 
 import dev.megashopper.common.dtos.*;
-import dev.megashopper.common.utils.exceptions.InvalidRequestException;
-import dev.megashopper.common.service.UserResponse;
 import dev.megashopper.common.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.Map;
 
 // Rest controller combines @Controller and @ResponseBody(changes return value to HTTP response)
 @RestController
@@ -50,6 +45,8 @@ public class UserController {
     @PostMapping(consumes = "application/json", produces = "application/json")
     public ResourceCreationResponse postNewUser (@RequestBody UserRequestPayload newUser) {
         return userService.createUser(newUser);
+
+    }
 //
 //    // TODO: Need Help, I don't think it should return 'null'
 //    @GetMapping(produces = "application/json")
@@ -86,7 +83,5 @@ public class UserController {
 //    @PatchMapping(consumes = "application/json")
 //    public void updateUserInfo(@RequestBody UserRequestPayload updatedUserInfo) {
 //        userService.updateUser(updatedUserInfo);
-//
-    }
 //
 }
