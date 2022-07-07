@@ -34,9 +34,10 @@ public class ItemService {
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
-    public void createItem(Item NewItem) {
-        itemRepository.CreateItem(NewItem);
-    }
+
+//    public void createItem(Item NewItem) {
+//        itemRepository.CreateItem(NewItem);
+//    }
 
     public void deleteitemById(String id) {
         itemRepository.deleteById(id);

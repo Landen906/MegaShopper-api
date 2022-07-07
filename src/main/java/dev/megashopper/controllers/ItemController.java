@@ -1,12 +1,12 @@
 package dev.megashopper.controllers;
 
+import dev.megashopper.common.dtos.ItemRequestPayload;
 import dev.megashopper.common.dtos.ItemResponsePayload;
+import dev.megashopper.common.dtos.ResourceCreationResponse;
+import dev.megashopper.common.entities.Item;
 import dev.megashopper.common.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class ItemController {
     public List<ItemResponsePayload> getAllItems() {
         return itemService.fetchAllItems();
     }
+
 
     @DeleteMapping()
     public void deleteItem(String id) {
