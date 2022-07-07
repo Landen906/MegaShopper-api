@@ -47,6 +47,7 @@ public class UserController {
         return userService.createUser(newUser);
 
     }
+
 //
 //    // TODO: Need Help, I don't think it should return 'null'
 //    @GetMapping(produces = "application/json")
