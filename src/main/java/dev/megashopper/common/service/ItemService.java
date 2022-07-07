@@ -1,5 +1,7 @@
 package dev.megashopper.common.service;
 
+import dev.megashopper.common.dtos.ItemRequestPayload;
+import dev.megashopper.common.dtos.ResourceCreationResponse;
 import dev.megashopper.common.entities.Item;
 import dev.megashopper.common.dtos.ItemResponsePayload;
 import dev.megashopper.common.repository.ItemRepository;
@@ -7,11 +9,13 @@ import dev.megashopper.common.utils.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Validated
 @Transactional
 public class ItemService {
     private final ItemRepository itemRepository;
@@ -35,9 +39,12 @@ public class ItemService {
     }
 
 
-//    public void createItem(Item NewItem) {
-//        itemRepository.CreateItem(NewItem);
-//    }
+    public ResourceCreationResponse createItem(ItemRequestPayload itemRequest) {
+        Item newItem = itemRequest.extractResource();
+        itemRepository.save(newItem);
+
+        return new ResourceCreationResponse(newItem.getItemId());
+    }
 
     public void deleteitemById(String id) {
         itemRepository.deleteById(id);
