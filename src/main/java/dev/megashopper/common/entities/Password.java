@@ -3,6 +3,7 @@ package dev.megashopper.common.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.util.Arrays;
 
 @Embeddable
 public class Password {
@@ -36,4 +37,11 @@ public class Password {
         this.salt = salt;
     }
 
+    @Override
+    public String toString() {
+        return "Password{" +
+                "hash=" + Arrays.toString(hash) +
+                ", salt=" + Arrays.toString(salt) +
+                '}';
+    }
 }

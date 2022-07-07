@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class UserResponse extends dev.megashopper.common.service.UserResponse {
+public class UserResponse {
 
     private String customerId;
     private String firstName;
