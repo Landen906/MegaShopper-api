@@ -81,7 +81,7 @@ public class UserService {
         }
 
         newUser.setCustomerId(UUID.randomUUID().toString());
-
+        newUser.
 
         return new ResourceCreationResponse(newUser.getCustomerId());
 

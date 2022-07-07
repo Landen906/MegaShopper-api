@@ -2,6 +2,7 @@ package dev.megashopper.common.dtos;
 
 import dev.megashopper.common.entities.Password;
 import dev.megashopper.common.entities.User;
+import dev.megashopper.common.utils.Generation;
 import dev.megashopper.common.utils.web.validators.ValidatorMessageUtil;
 import dev.megashopper.common.utils.web.validators.groups.OnCreate;
 import dev.megashopper.common.utils.web.validators.groups.OnUpdate;
@@ -81,13 +82,15 @@ public class UserRequestPayload {
             message = ValidatorMessageUtil.PASSWORD_REQUIRED_ON_CREATE,
             groups = OnCreate.class)
     private Password password;
-
+    private String passInput;
     public User extractResource() {
 
         if (customerId == null) {
             return new User(firstName, lastName, email, username, password);
         }
-
+        if (password == null) {
+            return new User(firstName, lastName, email, username, Generation.generatePassword(passInput));
+        }
         return new User(customerId, firstName, lastName, email, username, password);
     }
 
