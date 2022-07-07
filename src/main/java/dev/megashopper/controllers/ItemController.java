@@ -33,6 +33,12 @@ public class ItemController {
         return itemService.createItem(newItem);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping(consumes = "application/json")
+    public void updateItemInfo(@RequestBody ItemRequestPayload updatedItemInfo) {
+        itemService.updateItem(updatedItemInfo);
+    }
+
     @DeleteMapping()
     public void deleteItem(String id) {
         itemService.deleteitemById(id);

@@ -46,6 +46,11 @@ public class ItemService {
         return new ResourceCreationResponse(newItem.getItemId());
     }
 
+    public void updateItem(ItemRequestPayload updatedItemRequest) {
+        Item updatedItem = updatedItemRequest.extractResource();
+        Item itemForUpdate = itemRepository.findById(updatedItem.getItemId()).orElseThrow(ResourceNotFoundException::new);
+    }
+
     public void deleteitemById(String id) {
         itemRepository.deleteById(id);
     }
