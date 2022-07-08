@@ -141,5 +141,8 @@ public class User implements Comparable<User> {
                 '}';
     }
 
+    public void setLoggedIn(boolean b) {
+
+    }
 }
 
