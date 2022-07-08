@@ -94,13 +94,9 @@ public class UserController {
 //    public void updateUserInfo(@RequestBody UserRequestPayload updatedUserInfo) {
 //        userService.updateUser(updatedUserInfo);
 //
-    public List loginUser(@Valid @RequestBody User user) {
-        List<User> users = userRepository.findAll();
-        userRepository.save(user);
-        return userService.fetchAllUsers();
-    }
 
-    public List userLogin() {
+
+    public List fetchAllUsers() {
         return userService.fetchAllUsers();
     }
 }

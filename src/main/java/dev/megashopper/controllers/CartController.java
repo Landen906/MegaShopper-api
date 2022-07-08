@@ -19,14 +19,17 @@ import java.util.Map;
 @RestController
 @RequestMapping("/cart")
 public class CartController {
+    private final CartService cartService;
+    private final ItemService itemService;
+    private final TokenService tokenService;
+    private final UserService userService;
     @Autowired
-    private CartService cartService;
-    @Autowired
-    private ItemService itemService;
-    @Autowired
-    private TokenService tokenService;
-    @Autowired
-    private UserService userService;
+    public CartController(CartService cartService, ItemService itemService, TokenService tokenService, UserService userService) {
+        this.cartService = cartService;
+        this.itemService = itemService;
+        this.tokenService = tokenService;
+        this.userService = userService;
+    }
 
     @GetMapping(produces = "application/json", value = "/cart/items")
     public List<CartResponse> getAllItems() {
@@ -41,7 +44,7 @@ public class CartController {
 
         cartService.addItem(i.getItemId(), u.getCustomerId());
     }
-    @PatchMapping("/cart/remove/{id}")
+    @PatchMapping("/remove/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void removeItem(@PathVariable String itemId, @RequestHeader String token) {
 
