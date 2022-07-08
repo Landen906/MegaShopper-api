@@ -39,7 +39,9 @@ public class AuthService {
 
     public Principal authenticate(@Valid AuthRequest authRequest) {
         LogManager.getLogger().info(String.format("Email"));
-        User u = authRepo.findByEmail(authRequest.getEmail()).get();
+            User u = authRepo.findByEmail(authRequest.getEmail()).orElseThrow(AuthenticationException::new);
+
+
         authRequest.setHashed(Generation.generatePassword(authRequest.getPassword(), u.getPassword().getSalt()));
 
         return authRepo.findUserByEmailAndPassword(authRequest.getEmail(), authRequest.getHashed())
