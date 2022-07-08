@@ -6,15 +6,11 @@ import dev.megashopper.common.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-@Data
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -28,12 +24,11 @@ public class AuthController {
         this.tokenService = tokenService;
     }
 
-    @PostMapping(consumes = "application/json", produces = "application/json")
+    @GetMapping(consumes = "application/json", produces = "application/json")
     public Principal authenticate(@RequestBody AuthRequest authRequest, HttpServletResponse resp) {
         Principal payload = authService.authenticate(authRequest);
         String token = tokenService.generateToken(payload);
         resp.setHeader("Authorization", token);
         return payload;
     }
-
 }

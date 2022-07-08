@@ -19,8 +19,6 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private UserRepository userRepository;
-    private User User;
 
     @Autowired
     public UserController(UserService userService) {
@@ -32,8 +30,8 @@ public class UserController {
     /* TODO: This code will not work until it has been implemented into UserRepository
      *   */
     @GetMapping(produces = "application/json")
-    public <UserResponse> List<UserResponse> getAllUsers() {
-        return (List<UserResponse>) userService.fetchAllUsers();
+    public List<UserResponse> getAllUsers() {
+        return userService.fetchAllUsers();
     }
 
     //    @ResponseStatus(HttpStatus.CREATED)

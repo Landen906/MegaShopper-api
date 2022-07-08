@@ -3,13 +3,14 @@ package dev.megashopper.common.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
     @Id
     @Column(name = "employee_id", nullable = false, unique = true)
-    private int employeeId;
+    private String employeeId;
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)
@@ -26,19 +27,29 @@ public class Employee {
         super();
     }
 
-    public Employee(int employeeId, String firstName, String lastName, Password password, String email) {
+    public Employee(String employeeId, String firstName, String lastName, Password password, String email) {
         this.employeeId = employeeId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Employee(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public int getEmployeeId() {
+    public String getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
+    }
+    public void setEmployeeId() {
+        this.employeeId = UUID.randomUUID().toString();
     }
 
     public String getFirstName() {

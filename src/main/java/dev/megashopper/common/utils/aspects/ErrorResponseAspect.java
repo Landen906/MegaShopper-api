@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import java.util.Collections;
 import java.util.stream.Collectors;
-
-@Aspect
-@Component
-public class ErrorAspectResponse {
+@RestControllerAdvice
+public class ErrorResponseAspect {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)

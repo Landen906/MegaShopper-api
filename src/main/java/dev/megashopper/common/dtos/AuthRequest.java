@@ -11,5 +11,6 @@ import org.hibernate.validator.constraints.Length;
 public class AuthRequest {
     @Length(message = ValidatorMessageUtil.EMAIL_REQUIREMENTS)
     private String email;
-    private Password password;
+    private String password;
+    private Password hashed;
 }

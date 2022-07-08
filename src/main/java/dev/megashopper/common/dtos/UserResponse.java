@@ -25,7 +25,7 @@ public class UserResponse {
         this.username = user.getUsername();
     }
 
-    public void createUser(User newUser){
+    public void createUser(User newUser) {
         this.customerId = newUser.getCustomerId();
         this.firstName = newUser.getFirstName();
         this.lastName = newUser.getLastName();
