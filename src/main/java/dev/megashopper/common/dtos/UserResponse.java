@@ -23,6 +23,9 @@ public class UserResponse {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.username = user.getUsername();
+        this.email = user.getEmail();
+        this.address = user.getAddress();
+        this.password = user.getPassword();
     }
 
     public void createUser(User newUser) {
@@ -35,7 +38,4 @@ public class UserResponse {
         this.password = newUser.getPassword();
     }
 
-    public UserResponse getCustomerId() {
-        return null;
-    }
 }

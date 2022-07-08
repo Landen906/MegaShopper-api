@@ -24,7 +24,7 @@ public class AuthController {
         this.tokenService = tokenService;
     }
 
-    @GetMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public Principal authenticate(@RequestBody AuthRequest authRequest, HttpServletResponse resp) {
         Principal payload = authService.authenticate(authRequest);
         String token = tokenService.generateToken(payload);
