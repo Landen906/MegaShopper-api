@@ -24,8 +24,13 @@ public class Principal {
     }
 
     public Principal(UserResponsePayload userResponsePayload) {
+        this(userResponsePayload.getCustomerId(), userResponsePayload.getEmail());
     }
 
+    public Principal(EmployeeResponsePayload employeeResponsePayload) {
+        this(employeeResponsePayload.getEmployeeId(), employeeResponsePayload.getEmail());
+
+    }
     public String getAuthCustomerId() {
         return authUserId;
     }

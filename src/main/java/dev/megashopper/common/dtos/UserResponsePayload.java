@@ -11,19 +11,11 @@ import lombok.NoArgsConstructor;
 public class UserResponsePayload {
 
     private String customerId;
-    private String firstName;
-    private String lastName;
     private String email;
-    private String address;
     private String username;
-    private Password password;
     public UserResponsePayload(User user) {
         this.customerId = user.getCustomerId();
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
         this.email = user.getEmail();
-        this.address = user.getAddress();
         this.username = user.getUsername();
-        this.password = user.getPassword();
     }
 }
