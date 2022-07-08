@@ -33,7 +33,7 @@ public class CartController {
         return cartService.fetchAllItems();
     }
 
-    @PostMapping("/cart/add/{id}")
+    @PostMapping("add/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void addItem(@PathVariable String itemId, @RequestHeader String token) {
         ItemResponsePayload i = itemService.findById(itemId);
@@ -41,7 +41,7 @@ public class CartController {
 
         cartService.addItem(i.getItemId(), u.getCustomerId());
     }
-    @PutMapping("/cart/remove/{id}")
+    @PatchMapping("/cart/remove/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void removeItem(@PathVariable String itemId, @RequestHeader String token) {
 
